@@ -171,6 +171,7 @@ def main(argv=None) -> None:
                             result["protection_before"] = dict(xcp.getCurrentProtectionStatus())
                             xcp.cond_unlock("DAQ,CALPAG")
                             result["protection_after"] = dict(xcp.getCurrentProtectionStatus())
+                            result["xcp_unlock"] = "COMPLETED"
                             if daq:
                                 daq.setup()
                                 daq.start()
@@ -183,6 +184,7 @@ def main(argv=None) -> None:
                             result['selector_readback'] = selector
                             if case.is_multi_signal:
                                 result['parameter_readbacks'] = {parameter.name: client.read(parameter).raw_value for parameter in parameters[:-2]}
+                            result["injection_parameters_readable"] = True
                             with daq.lock:
                                 samples = list(daq.rows)
                             with (out / "samples.jsonl").open("w", encoding="utf-8", buffering=1) as stream:
@@ -192,14 +194,29 @@ def main(argv=None) -> None:
                             if args.verify_recovery:
                                 import cantools
                                 db = cantools.database.load_file(r"C:\recar\Recar_CANoe\recar\Databases\Recar_CAN_FD.dbc")
+                                stats = daq.pretrigger_stats()
+                                result["pretrigger_evidence"] = stats
+                                daq.require_pretrigger(stats)
                                 normal = (case.is_multi_signal or selector == 0) and len(samples) >= 50
+                                can_fresh = True
+                                last_values = {}
                                 for sample in samples[-50:]:
                                     v = sample["signals"]
                                     lamp_frames = [f for f in frames if f["id"] == 0x33D and f["rx"] and 0 <= sample["monotonic"]-f["monotonic"] < 0.2]
                                     engine_frames = [f for f in frames if f["id"] == 0x53 and 0 <= sample["monotonic"]-f["monotonic"] < 0.5]
+                                    can_fresh &= bool(lamp_frames) and bool(engine_frames)
                                     normal &= v["EcuStatus"] == 9 and v["IgnStatus"] == 1
                                     normal &= bool(lamp_frames) and db.decode_message(0x33D, bytes.fromhex(lamp_frames[-1]["data"]), decode_choices=False)["EPS_WarningLampSt"] == 0
                                     normal &= bool(engine_frames) and db.decode_message(0x53, bytes.fromhex(engine_frames[-1]["data"]), decode_choices=False)["VCU_Engine_Running"] == 1
+                                    if lamp_frames and engine_frames:
+                                        last_values = {
+                                            "EcuStatus": v["EcuStatus"],
+                                            "IgnStatus": v["IgnStatus"],
+                                            "EPS_WarningLampSt": db.decode_message(0x33D, bytes.fromhex(lamp_frames[-1]["data"]), decode_choices=False)["EPS_WarningLampSt"],
+                                            "VCU_Engine_Running": db.decode_message(0x53, bytes.fromhex(engine_frames[-1]["data"]), decode_choices=False)["VCU_Engine_Running"],
+                                        }
+                                result["can_traffic_fresh"] = can_fresh
+                                result["baseline_signals"] = last_values
                                 result["recovery"] = "BASELINE_VERIFIED" if normal else "BASELINE_NOT_VERIFIED"
                             if args.inject:
                                 from recar.smoke import run

@@ -32,12 +32,16 @@ class MultiSignalRunner:
                 parameter = self.parameters[write.signal]
                 if write.signal not in attempted_signals:
                     attempted_signals.append(write.signal)
+                write_started = time.monotonic()
                 expected, actual, ok = self.client.write_and_verify(parameter, write.value, tolerance=0)
+                readback_at = time.monotonic()
                 verified = bool(ok and actual.data == expected.data)
                 if evidence is not None:
                     evidence.setdefault("writes", []).append({"signal": write.signal, "value": write.value,
                         "order": write.order, "expected_data": expected.data.hex(),
-                        "readback_data": actual.data.hex(), "verified": verified, "monotonic": time.monotonic()})
+                        "readback_data": actual.data.hex(), "verified": verified,
+                        "write_started_monotonic": write_started, "readback_monotonic": readback_at,
+                        "monotonic": readback_at})
                 if not verified:
                     raise RuntimeError(f"Injection readback mismatch: {write.signal}")
             observe()
@@ -46,10 +50,14 @@ class MultiSignalRunner:
             restore_failures = []
             for signal in reversed(attempted_signals):
                 parameter, original = self.parameters[signal], originals[signal]
+                restore_started = time.monotonic()
                 expected, actual, ok = self.client.write_and_verify(parameter, original.physical_value, tolerance=0)
+                readback_at = time.monotonic()
                 verified = bool(ok and actual.data == original.data)
                 restoration.append({"signal": signal, "expected_data": original.data.hex(),
-                    "readback_data": actual.data.hex(), "verified": verified, "monotonic": time.monotonic()})
+                    "readback_data": actual.data.hex(), "verified": verified,
+                    "write_started_monotonic": restore_started, "readback_monotonic": readback_at,
+                    "monotonic": readback_at})
                 if not verified:
                     restore_failures.append(signal)
             if evidence is not None:

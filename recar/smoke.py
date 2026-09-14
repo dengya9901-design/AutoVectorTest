@@ -26,18 +26,26 @@ def inject_and_restore(client, parameter, observe, before_write=None, fault_valu
     try:
         if before_write:
             before_write()
+        write_started = time.monotonic()
         expected, actual, ok = client.write_and_verify(parameter, fault_value, tolerance=0)
+        readback_at = time.monotonic()
         if evidence is not None:
             evidence['injection'] = {'expected_data': expected.data.hex(), 'readback_data': actual.data.hex(),
-                                     'verified': bool(ok and actual.data == expected.data), 'monotonic': time.monotonic()}
+                                     'verified': bool(ok and actual.data == expected.data),
+                                     'write_started_monotonic': write_started,
+                                     'readback_monotonic': readback_at, 'monotonic': readback_at}
         if not ok or actual.data != expected.data:
             raise RuntimeError("Injection readback mismatch")
         observe()
     finally:
+        restore_started = time.monotonic()
         expected, actual, ok = client.write_and_verify(parameter, original.physical_value, tolerance=0)
+        readback_at = time.monotonic()
         if evidence is not None:
             evidence['restoration'] = {'expected_data': original.data.hex(), 'readback_data': actual.data.hex(),
-                                       'verified': bool(ok and actual.data == original.data), 'monotonic': time.monotonic()}
+                                       'verified': bool(ok and actual.data == original.data),
+                                       'write_started_monotonic': restore_started,
+                                       'readback_monotonic': readback_at, 'monotonic': readback_at}
         if not ok or actual.data != original.data:
             raise RuntimeError("RESTORE_FAILED: selector requires operator attention")
 
@@ -98,7 +106,9 @@ def run(xcp, app, monitor, parameters, frames, out, result, daq=None, *, case):
 
         def before_write():
             if daq:
-                daq.require_pretrigger()
+                stats = daq.pretrigger_stats()
+                result["pretrigger_evidence"] = stats
+                daq.require_pretrigger(stats)
             result["injection_start_monotonic"] = time.monotonic()
             log("injection_write_start", value=fault_value)
 
@@ -129,7 +139,12 @@ def run(xcp, app, monitor, parameters, frames, out, result, daq=None, *, case):
             daq.stop()
         xcp.disconnect()
         result["xcp_disconnected_before_reset"] = True
+        from recar.recovery_policy import require_restoration_before_reset, wait_for_minimum_stabilization
+        require_restoration_before_reset(result)
+        recovery_evidence = result.setdefault("recovery_evidence", {})
         sent = time.monotonic()
+        recovery_evidence["hard_reset_request"] = "SENT"
+        recovery_evidence["hard_reset_request_monotonic"] = sent
         log("hard_reset_request", request_id="0x7F0", uds="1101")
         monitor.send(can.Message(arbitration_id=0x7F0, is_extended_id=False,
                                  is_fd=True, bitrate_switch=True, data=bytes.fromhex("02 11 01 00 00 00 00 00")))
@@ -150,7 +165,8 @@ def run(xcp, app, monitor, parameters, frames, out, result, daq=None, *, case):
                 break
             time.sleep(0.02)
         result["reset_positive_response"] = response
-        time.sleep(3)
+        recovery_evidence["hard_reset_positive_response"] = bool(response)
+        recovery_evidence["stabilization"] = wait_for_minimum_stabilization()
         engine.Value = 1
         log("engine_request_after_reset", requested=1)
         # A reset invalidates the original master/session. Rebuild in a fresh
@@ -164,6 +180,37 @@ def run(xcp, app, monitor, parameters, frames, out, result, daq=None, *, case):
         result["recovery_report"] = str(path)
         result["xcp_reconnect"] = recovery.get("read_probe", "FAILED")
         result["recovery"] = recovery.get("recovery", "FAILED")
+        calibration = result.get("calibration_evidence", {})
+        if case.is_multi_signal:
+            expected_originals = {row["signal"]: row["raw"] for row in calibration.get("originals", [])}
+            actual_originals = recovery.get("parameter_readbacks", {})
+        else:
+            original = calibration.get("original", {})
+            expected_originals = {case.injection_signal: original.get("raw")}
+            actual_originals = {case.injection_signal: recovery.get("selector_readback")}
+        originals_verified = bool(expected_originals) and actual_originals == expected_originals
+        recovery_evidence.update({
+            "xcp_reconnect": "COMPLETED" if result["xcp_reconnect"] == "COMPLETED" else "FAILED",
+            "xcp_unlock": recovery.get("xcp_unlock", "FAILED"),
+            "restored_originals_verified": originals_verified,
+            "expected_originals": expected_originals,
+            "actual_originals": actual_originals,
+            "fresh_pretrigger": recovery.get("pretrigger_evidence", {}),
+            "can_traffic_fresh": recovery.get("can_traffic_fresh") is True,
+            "baseline_signals": recovery.get("baseline_signals", {}),
+            "baseline_status": recovery.get("recovery", "FAILED"),
+        })
+        recovery_ready = (
+            result["xcp_reconnect"] == "COMPLETED"
+            and recovery_evidence["xcp_unlock"] == "COMPLETED"
+            and originals_verified
+            and recovery_evidence["fresh_pretrigger"].get("status") == "PASSED"
+            and recovery_evidence["fresh_pretrigger"].get("fresh") is True
+            and recovery_evidence["can_traffic_fresh"]
+            and recovery.get("recovery") == "BASELINE_VERIFIED"
+        )
+        if not recovery_ready:
+            result["recovery"] = "BASELINE_NOT_VERIFIED"
         if response is None and result["recovery"] == "BASELINE_VERIFIED":
             result["recovery"] = "BASELINE_VERIFIED_RESET_RESPONSE_MISSING"
     finally:
