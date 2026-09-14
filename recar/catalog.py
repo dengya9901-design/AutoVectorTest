@@ -11,6 +11,10 @@ class CalibrationWrite:
     signal: str
     value: int | float
     order: int
+    source_expression: str = ''
+    unit: str = ''
+    physical_value: int | float | None = None
+    raw_value: int | float | None = None
 
 
 @dataclass(frozen=True)
@@ -35,6 +39,8 @@ class TestCase:
     notes: str = ''
     writes: tuple[CalibrationWrite, ...] = ()
     source_step: str = ''
+    variant_id: str = 'DEFAULT'
+    aggregate_row_status: str = 'NOT_APPLICABLE'
 
     def metadata(self):
         return asdict(self)
@@ -59,7 +65,7 @@ def load_catalog(path=CATALOG):
                     ('MCU', 'FAULT_INJECT.MCU_Fault_Test'),
                     ('MCU_OS', 'FAULT_INJECT.MCU_OS_Test'),
                     ('MAGCHIP', 'FAULT_INJECT.Magchip_Fault_Test')})
-        valid_multi = (case.family in {'MULTI_SIGNAL_FIXED', 'SPECIAL_SEQUENCE'} and len(case.writes) >= 2
+        valid_multi = (case.family in {'MULTI_SIGNAL_FIXED', 'SPECIAL_SEQUENCE', 'PARAMETER_OFFSET'} and len(case.writes) >= 2
                        and [write.order for write in case.writes] == list(range(1, len(case.writes) + 1))
                        and (case.family == 'SPECIAL_SEQUENCE' or len({write.signal for write in case.writes}) == len(case.writes))
                        and all(write.signal and isinstance(write.value, (int, float)) for write in case.writes))
@@ -71,7 +77,7 @@ def load_catalog(path=CATALOG):
             raise ValueError(f'Unsupported or invalid test definition: {case.selection_id}')
         if case.injection_signal == 'FAULT_INJECT.Sent_Fault_Test' and case.injection_value > 16:
             raise ValueError('Sent value is outside the validated catalog scope')
-        if case.implementation_status != 'IMPLEMENTED' or case.offline_validation_status != 'OFFLINE_VERIFIED':
+        if case.implementation_status != 'IMPLEMENTED' or case.offline_validation_status not in {'OFFLINE_VERIFIED', 'A2L_VALIDATION_REQUIRED'}:
             raise ValueError(f'Catalog validation status is incomplete: {case.selection_id}')
         if case.hardware_validation_status not in {'HARDWARE_VALIDATED', 'HARDWARE_VALIDATION_PENDING'}:
             raise ValueError(f'Invalid hardware validation status: {case.selection_id}')

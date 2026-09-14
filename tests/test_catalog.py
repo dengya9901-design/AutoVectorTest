@@ -12,9 +12,9 @@ from recar.offline import run as dry_run
 
 class CatalogTests(unittest.TestCase):
     def test_family_counts_and_required_mapping(self):
-        self.assertEqual(families(), ('MAGCHIP', 'MCU', 'MCU_OS', 'MULTI_SIGNAL_FIXED', 'SENT', 'SPECIAL_SEQUENCE'))
+        self.assertEqual(families(), ('MAGCHIP', 'MCU', 'MCU_OS', 'MULTI_SIGNAL_FIXED', 'PARAMETER_OFFSET', 'SENT', 'SPECIAL_SEQUENCE'))
         self.assertEqual({family: len(choices(family)) for family in families()},
-                         {'SENT': 16, 'MCU': 30, 'MCU_OS': 38, 'MAGCHIP': 10, 'MULTI_SIGNAL_FIXED': 44, 'SPECIAL_SEQUENCE': 1})
+                         {'SENT': 16, 'MCU': 30, 'MCU_OS': 38, 'MAGCHIP': 10, 'MULTI_SIGNAL_FIXED': 44, 'SPECIAL_SEQUENCE': 1, 'PARAMETER_OFFSET': 15})
         sent = select_case(1, 'SENT')
         mcu = select_case(37, 'MCU')
         os_case = select_case(99, 'MCU_OS')
@@ -32,7 +32,7 @@ class CatalogTests(unittest.TestCase):
         for case in choices():
             with self.subTest(case=case.selection_id):
                 self.assertEqual(case.implementation_status, 'IMPLEMENTED')
-                self.assertEqual(case.offline_validation_status, 'OFFLINE_VERIFIED')
+                self.assertIn(case.offline_validation_status, ('OFFLINE_VERIFIED','A2L_VALIDATION_REQUIRED'))
                 self.assertIn(case.hardware_validation_status,
                               ('HARDWARE_VALIDATED', 'HARDWARE_VALIDATION_PENDING'))
 

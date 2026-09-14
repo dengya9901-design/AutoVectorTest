@@ -4227,6 +4227,729 @@
         }
       ],
       "source_step": "注入PDC_Fault_Pemt_Test=1，PDC_Fault_Pemt_Test（gain128）＞2"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2003,
+      "excel_row": 3,
+      "tsr_id": "FN-20762",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "MOSFET_OVER_TEMPERATURE_FAILURE",
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E3",
+        "injection": "G3",
+        "enabled": "H3"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "Temp_Test",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "Temp_Inject_Test",
+          "value": 126,
+          "physical_value": 126,
+          "raw_value": null,
+          "source_expression": ">125",
+          "unit": "",
+          "order": 2
+        }
+      ],
+      "source_step": "Temp_Test=1，Temp_Inject_Test注入大于125",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2104,
+      "excel_row": 4,
+      "tsr_id": "FN-20762",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "TEMPERATURE_SENSOR_ERROR_FAILURE",
+      "fhti_ms": 104,
+      "fdti_ms": 100,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E4",
+        "injection": "G4",
+        "enabled": "H4"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "Temp_Senor_Test",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "TempVoltage_Test",
+          "value": 4.96,
+          "physical_value": 4.96,
+          "raw_value": null,
+          "source_expression": ">4.95",
+          "unit": "V",
+          "order": 2
+        }
+      ],
+      "source_step": "先注Temp_Senor_Test置1故障注入使能，TempVoltage_Test(温度传感器1的电压注入，gain_819)，注入大于4.95或者小于0.05",
+      "variant_id": "HIGH",
+      "aggregate_row_status": "HARDWARE_VALIDATION_PENDING_ALL_VARIANTS"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2204,
+      "excel_row": 4,
+      "tsr_id": "FN-20762",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "TEMPERATURE_SENSOR_ERROR_FAILURE",
+      "fhti_ms": 104,
+      "fdti_ms": 100,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E4",
+        "injection": "G4",
+        "enabled": "H4"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "Temp_Senor_Test",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "TempVoltage_Test",
+          "value": 0.03,
+          "physical_value": 0.03,
+          "raw_value": null,
+          "source_expression": "<0.05",
+          "unit": "V",
+          "order": 2
+        }
+      ],
+      "source_step": "先注Temp_Senor_Test置1故障注入使能，TempVoltage_Test(温度传感器1的电压注入，gain_819)，注入大于4.95或者小于0.05",
+      "variant_id": "LOW",
+      "aggregate_row_status": "HARDWARE_VALIDATION_PENDING_ALL_VARIANTS"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2005,
+      "excel_row": 5,
+      "tsr_id": "FN-20762",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "OVER_TEMPERATURE_PROTECT_FAILURE",
+      "fhti_ms": 1004,
+      "fdti_ms": 1000,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E5",
+        "injection": "G5",
+        "enabled": "H5"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "Over_Temp_Inject_Start",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "Over_Temp_Warning_Inject",
+          "value": 0.7,
+          "physical_value": 0.7,
+          "raw_value": null,
+          "source_expression": "<0.8",
+          "unit": "",
+          "order": 2
+        }
+      ],
+      "source_step": "Over_Temp_Inject_Start=1，Over_Temp_Warning_Inject(温度保护系数注入（gain_1024)小于0.8",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2237,
+      "excel_row": 137,
+      "tsr_id": "FN-20999",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "POWER_SOURCE_5V_FAILURE",
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E137",
+        "injection": "G137",
+        "enabled": "H137"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "Sensor_5V_Test",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "Power_Source5V_Test",
+          "value": 5.6,
+          "physical_value": 5.6,
+          "raw_value": null,
+          "source_expression": ">5.5",
+          "unit": "V",
+          "order": 2
+        }
+      ],
+      "source_step": "注入Sensor_5V_Test=1,Power_Source5V_Test(gain_1024）大于5.5V，小于4.5V",
+      "variant_id": "HIGH",
+      "aggregate_row_status": "HARDWARE_VALIDATION_PENDING_ALL_VARIANTS"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2337,
+      "excel_row": 137,
+      "tsr_id": "FN-20999",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "POWER_SOURCE_5V_FAILURE",
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E137",
+        "injection": "G137",
+        "enabled": "H137"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "Sensor_5V_Test",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "Power_Source5V_Test",
+          "value": 4.4,
+          "physical_value": 4.4,
+          "raw_value": null,
+          "source_expression": "<4.5",
+          "unit": "V",
+          "order": 2
+        }
+      ],
+      "source_step": "注入Sensor_5V_Test=1,Power_Source5V_Test(gain_1024）大于5.5V，小于4.5V",
+      "variant_id": "LOW",
+      "aggregate_row_status": "HARDWARE_VALIDATION_PENDING_ALL_VARIANTS"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2197,
+      "excel_row": 197,
+      "tsr_id": "FN-20999",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "CURRENT_SENSOR_ERROR_N_FAILURE",
+      "fhti_ms": 54,
+      "fdti_ms": 50,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E197",
+        "injection": "G197",
+        "enabled": "H197"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "curr_switch",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "IA_Curr_Offset",
+          "value": 31,
+          "physical_value": 31,
+          "raw_value": null,
+          "source_expression": ">30",
+          "unit": "",
+          "order": 2
+        }
+      ],
+      "source_step": "注入curr_switch=1，\nIA_Curr_Offset大于30",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2211,
+      "excel_row": 211,
+      "tsr_id": "FN-21000",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "ID_ACTIVE_RETURN_OVER_LIMIT_FAILTURE",
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E211",
+        "injection": "G211",
+        "enabled": "H211"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "Torque_AR_Fault_Test",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "Aligning_Torque_Test",
+          "value": 11.1,
+          "physical_value": 11.1,
+          "raw_value": null,
+          "source_expression": ">10.1",
+          "unit": "MotorToq",
+          "order": 2
+        }
+      ],
+      "source_step": "注入Torque_AR_Fault_Test=1，Aligning_Torque_Test（gain128_MotorToq）大于10.1",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2212,
+      "excel_row": 212,
+      "tsr_id": "FN-21000",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "ID_DAMPING_COMPENSATION_OVER_LIMIT_FAILTURE",
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E212",
+        "injection": "G212",
+        "enabled": "H212"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "Torque_Damping_Fault_Test",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "Damping_Torque_Test",
+          "value": 10,
+          "physical_value": 10,
+          "raw_value": null,
+          "source_expression": ">9",
+          "unit": "MotorToq",
+          "order": 2
+        }
+      ],
+      "source_step": "注入Torque_Damping_Fault_Test=1，Damping_Torque_Test（gain128_MotorToq）大于9",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2213,
+      "excel_row": 213,
+      "tsr_id": "FN-21000",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "ID_FRICTION_COMPENSATION_OVER_LIMIT_FAILTURE",
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E213",
+        "injection": "G213",
+        "enabled": "H213"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "Torque_FR_Fault_Test",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "Friction_Torque_Value",
+          "value": 1.5,
+          "physical_value": 1.5,
+          "raw_value": null,
+          "source_expression": ">0.5",
+          "unit": "MotorToq",
+          "order": 2
+        }
+      ],
+      "source_step": "注入Torque_FR_Fault_Test=1（开启故障注入开关），Friction_Torque_Value（gain128_MotorToq）大于0.5",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2214,
+      "excel_row": 214,
+      "tsr_id": "FN-21000",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "ID_LONG_TIME_PDC_OVER_LIMIT_FAILTURE",
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E214",
+        "injection": "G214",
+        "enabled": "H214"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "PDC_Fault_Test",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "PDC_Angle_Value_Test",
+          "value": 3,
+          "physical_value": 3,
+          "raw_value": null,
+          "source_expression": ">2",
+          "unit": "",
+          "order": 2
+        }
+      ],
+      "source_step": "注入PDC_Fault_Test=1，PDC_Angle_Value_Test（gain128）＞2",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2218,
+      "excel_row": 218,
+      "tsr_id": "FN-21001",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "ID_HAND_TORQUE_LOWER_LIMIT_FAILURE",
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E218",
+        "injection": "G218",
+        "enabled": "H218"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "AimTorqueCheckThreshold",
+          "value": 10,
+          "physical_value": 10,
+          "raw_value": null,
+          "source_expression": "=10",
+          "unit": "MotorTorq",
+          "order": 1
+        },
+        {
+          "signal": "BasicTorque_Switch",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 2
+        },
+        {
+          "signal": "BasicTorque_Offset",
+          "value": -6.9,
+          "physical_value": -6.9,
+          "raw_value": null,
+          "source_expression": "=-6.9",
+          "unit": "MotorTorq",
+          "order": 3
+        }
+      ],
+      "source_step": "AimTorqueCheckThreshold(gian_1024_3_MotorTorq) = 10，避免报出compare故障\n注入BasicTorque_Switch=1，BasicTorque_Offset(gian_1024_3_MotorTorq)=-6.9",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2219,
+      "excel_row": 219,
+      "tsr_id": "FN-21001",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "ID_HAND_TORQUE_UPPER_LIMIT_FAILURE",
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E219",
+        "injection": "G219",
+        "enabled": "H219"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "AimTorqueCheckThreshold",
+          "value": 10,
+          "physical_value": 10,
+          "raw_value": null,
+          "source_expression": "=10",
+          "unit": "MotorTorq",
+          "order": 1
+        },
+        {
+          "signal": "BasicTorque_Switch",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 2
+        },
+        {
+          "signal": "BasicTorque_Offset",
+          "value": 6.9,
+          "physical_value": 6.9,
+          "raw_value": null,
+          "source_expression": "=6.9",
+          "unit": "MotorTorq",
+          "order": 3
+        }
+      ],
+      "source_step": "AimTorqueCheckThreshold(gian_1024_3_MotorTorq) = 10，避免报出compare故障\n注入BasicTorque_Switch=1，BasicTorque_Offset(gian_1024_3_MotorTorq)=6.9",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2220,
+      "excel_row": 220,
+      "tsr_id": "FN-21001",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "ID_HAND_TORQUE_UPPER_LIMIT_MODEL_2_FAILURE",
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E220",
+        "injection": "G220",
+        "enabled": "H220"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "BasicTorque_Switch",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "BasicTorque_Offset",
+          "value": -6.9,
+          "physical_value": -6.9,
+          "raw_value": null,
+          "source_expression": "=-6.9",
+          "unit": "MotorTorq",
+          "order": 2
+        }
+      ],
+      "source_step": "注入BasicTorque_Switch=1，BasicTorque_Offset(gian_1024_3_MotorTorq)=-6.9",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
+    },
+    {
+      "family": "PARAMETER_OFFSET",
+      "selection_id": 2221,
+      "excel_row": 221,
+      "tsr_id": "FN-21001",
+      "injection_signal": null,
+      "injection_value": null,
+      "expected_fault": "ID_HAND_TORQUE_LOWER_LIMIT_MODEL_2_FAILURE",
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "enabled": true,
+      "description": "Ordered physical parameter injection",
+      "source_cells": {
+        "fault_name": "E221",
+        "injection": "G221",
+        "enabled": "H221"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "writes": [
+        {
+          "signal": "BasicTorque_Switch",
+          "value": 1,
+          "physical_value": 1,
+          "raw_value": null,
+          "source_expression": "=1",
+          "unit": "",
+          "order": 1
+        },
+        {
+          "signal": "BasicTorque_Offset",
+          "value": 6.9,
+          "physical_value": 6.9,
+          "raw_value": null,
+          "source_expression": "=6.9",
+          "unit": "MotorTorq",
+          "order": 2
+        }
+      ],
+      "source_step": "注入BasicTorque_Switch=1，BasicTorque_Offset(gian_1024_3_MotorTorq)=6.9",
+      "variant_id": "DEFAULT",
+      "aggregate_row_status": "NOT_APPLICABLE"
     }
   ]
 }

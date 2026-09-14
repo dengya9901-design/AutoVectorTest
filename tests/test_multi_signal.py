@@ -114,3 +114,13 @@ class MultiSignalTests(unittest.TestCase):
         self.assertEqual([(write.signal, write.value, write.order) for write in case.writes],
                          [('PDC_Fault_Pemt_Test', 1, 1), ('PDC_Fault_Pemt_Test', 3, 2)])
         self.assertIn('>x executes as x+1', case.notes)
+
+    def test_parameter_offset_variants_and_physical_values(self):
+        cases=choices('PARAMETER_OFFSET')
+        self.assertEqual(len(cases),15)
+        row4=[c for c in cases if c.excel_row==4]; row137=[c for c in cases if c.excel_row==137]
+        self.assertEqual([(c.variant_id,c.writes[-1].physical_value) for c in row4],[('HIGH',4.96),('LOW',0.03)])
+        self.assertEqual([(c.variant_id,c.writes[-1].physical_value) for c in row137],[('HIGH',5.6),('LOW',4.4)])
+        self.assertTrue(all(c.aggregate_row_status=='HARDWARE_VALIDATION_PENDING_ALL_VARIANTS' for c in row4+row137))
+        self.assertEqual(select_case(2005,'PARAMETER_OFFSET').writes[-1].physical_value,0.7)
+        self.assertTrue(all(c.offline_validation_status=='A2L_VALIDATION_REQUIRED' for c in cases))
