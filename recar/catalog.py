@@ -59,9 +59,9 @@ def load_catalog(path=CATALOG):
                     ('MCU', 'FAULT_INJECT.MCU_Fault_Test'),
                     ('MCU_OS', 'FAULT_INJECT.MCU_OS_Test'),
                     ('MAGCHIP', 'FAULT_INJECT.Magchip_Fault_Test')})
-        valid_multi = (case.family == 'MULTI_SIGNAL_FIXED' and len(case.writes) >= 2
+        valid_multi = (case.family in {'MULTI_SIGNAL_FIXED', 'SPECIAL_SEQUENCE'} and len(case.writes) >= 2
                        and [write.order for write in case.writes] == list(range(1, len(case.writes) + 1))
-                       and len({write.signal for write in case.writes}) == len(case.writes)
+                       and (case.family == 'SPECIAL_SEQUENCE' or len({write.signal for write in case.writes}) == len(case.writes))
                        and all(write.signal and isinstance(write.value, (int, float)) for write in case.writes))
         if (type(case.selection_id) is not int or case.selection_id < 1
                 or not (valid_single or valid_multi)

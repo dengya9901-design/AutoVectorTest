@@ -107,3 +107,10 @@ class MultiSignalTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'X'):
             MultiSignalRunner(client, [SimpleNamespace(name='X')], case).inject_and_restore(lambda: None)
         self.assertEqual(client.calls, [('X', 1), ('X', 3), ('X', 9)])
+
+    def test_row215_uses_confirmed_greater_than_rule_as_ordered_data(self):
+        case = select_case(1215, 'SPECIAL_SEQUENCE')
+        self.assertEqual(case.excel_row, 215)
+        self.assertEqual([(write.signal, write.value, write.order) for write in case.writes],
+                         [('PDC_Fault_Pemt_Test', 1, 1), ('PDC_Fault_Pemt_Test', 3, 2)])
+        self.assertIn('>x executes as x+1', case.notes)
