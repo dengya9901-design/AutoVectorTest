@@ -1,0 +1,5371 @@
+{
+  "kind": "RECAR_HARDWARE_VALIDATION_MATRIX",
+  "execution": "NOT_RUN",
+  "source_commit": "faff632",
+  "entry_count": 154,
+  "stages": {
+    "1": "SENT known-good environment sanity",
+    "2": "MCU Row 37 unresolved evidence investigation",
+    "3": "family representative smoke tests",
+    "4": "family batches after representative success"
+  },
+  "batch_stop_conditions": [
+    "xcp_write_or_readback_failure",
+    "incomplete_required_daq_evidence",
+    "communication_not_recovered",
+    "restoration_failure",
+    "expected_evidence_missing",
+    "unknown_ecu_state",
+    "a2l_conversion_not_validated"
+  ],
+  "aggregate_requirements": {
+    "excel_row_4": "HIGH and LOW variants both require HARDWARE_VALIDATED evidence",
+    "excel_row_137": "HIGH and LOW variants both require HARDWARE_VALIDATED evidence"
+  },
+  "entries": [
+    {
+      "selection_id": 1,
+      "source_excel_row": 7,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "TORQUE_ANGLE_SENSOR_SENT3_PROTOCOL_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATED",
+      "previous_hardware_execution_status": "HARDWARE_EXECUTED_COMPLETED",
+      "recommended_stage": 1,
+      "batch_eligibility": "REPRESENTATIVE",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2,
+      "source_excel_row": 8,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "TORQUE_ANGLE_SENSOR_SENT3_WATCHDOG_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 2,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 3,
+      "source_excel_row": 9,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "ANGLE_SENSOR_SENT_S1A_DATA_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 3,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 4,
+      "source_excel_row": 10,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "ANGLE_SENSOR_SENT_S2A_DATA_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 4,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 5,
+      "source_excel_row": 11,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "ANGLE_SENSOR_SENT_S3_DATA_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 5,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 6,
+      "source_excel_row": 12,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "ANGLE_SENSOR_S1A_S2A_SYNC_CHECK_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 6,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 7,
+      "source_excel_row": 13,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "ANGLE_SENSOR_VERNIER_RESERVED_CHECK_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 7,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 8,
+      "source_excel_row": 14,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "ANGLE_SENSOR_SYNC_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 8,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 9,
+      "source_excel_row": 15,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "ANGLE_SENSOR_UNDEFINED_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 9,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 10,
+      "source_excel_row": 22,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "TORQUE_ANGLE_SENSOR_SENT1_PROTOCOL_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 10,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 11,
+      "source_excel_row": 23,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "TORQUE_ANGLE_SENSOR_SENT2_PROTOCOL_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 11,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 12,
+      "source_excel_row": 24,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "TORQUE_ANGLE_SENSOR_SENT1_WATCHDOG_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 12,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 13,
+      "source_excel_row": 25,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "TORQUE_ANGLE_SENSOR_SENT2_WATCHDOG_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 13,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 14,
+      "source_excel_row": 26,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "TORQUE_SENSOR_SENT_S1B_DATA_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 14,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 15,
+      "source_excel_row": 27,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "TORQUE_SENSOR_SENT_S2B_DATA_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 15,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 16,
+      "source_excel_row": 28,
+      "variant_id": "DEFAULT",
+      "category": "SENT",
+      "fault_family": "TORQUE_SENSOR_SYNC_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Sent_Fault_Test",
+          "physical_value": 16,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATED",
+      "previous_hardware_execution_status": "HARDWARE_EXECUTED_COMPLETED",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 37,
+      "source_excel_row": 37,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_RAM_ECC_CORRECTABLE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "HARDWARE_EXECUTED_INCOMPLETE",
+      "recommended_stage": 2,
+      "batch_eligibility": "REPRESENTATIVE",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 38,
+      "source_excel_row": 38,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_PFLASH_ECC_CORRECTABLE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 2,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 39,
+      "source_excel_row": 39,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_GTM_SRAM_ECC_CORRECTABLE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 3,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 40,
+      "source_excel_row": 40,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_CAN_SRAM_ECC_CORRECTABLE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 4,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 41,
+      "source_excel_row": 41,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_MISC_SRAM_ECC_CORRECTABLE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 5,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 74,
+      "source_excel_row": 74,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_CPU0_LOCKSTEP_COMPARATOR_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 38,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 75,
+      "source_excel_row": 75,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_CPU0_MPU_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 39,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 76,
+      "source_excel_row": 76,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_CPU0_SRAM_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 40,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 77,
+      "source_excel_row": 77,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_CPU0_SRI_EDC_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 41,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 78,
+      "source_excel_row": 78,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_PMU_PFLASH_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 42,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 79,
+      "source_excel_row": 79,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_SRI_EDC_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 43,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 80,
+      "source_excel_row": 80,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_IR_EDC_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 44,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 81,
+      "source_excel_row": 81,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_IOM_MISMATCH_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 45,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 82,
+      "source_excel_row": 82,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_SMU_RT_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 46,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 83,
+      "source_excel_row": 83,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_SMU_FSP_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 47,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 84,
+      "source_excel_row": 84,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_CGU_CLOCK_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 48,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 85,
+      "source_excel_row": 85,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_EVR_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 49,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 86,
+      "source_excel_row": 86,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_WDTS_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 50,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 87,
+      "source_excel_row": 87,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_WDTCUP0_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 51,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 88,
+      "source_excel_row": 88,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_SPB_ACCESS_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 52,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 89,
+      "source_excel_row": 89,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_TEMPERATURE_SENSOR_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 53,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 90,
+      "source_excel_row": 90,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_REGISTER_FLIPFLOP_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 54,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 91,
+      "source_excel_row": 91,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_SCU_ES_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 55,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 92,
+      "source_excel_row": 92,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_SRI_BUS_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 56,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 93,
+      "source_excel_row": 93,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_SPB_BUS_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 57,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 94,
+      "source_excel_row": 94,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_GTM_SRAM_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 58,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 95,
+      "source_excel_row": 95,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_CAN_SRAM_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 59,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 96,
+      "source_excel_row": 96,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_EMEM_SRAM_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 60,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 97,
+      "source_excel_row": 97,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_MISC_SRAM_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 61,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 98,
+      "source_excel_row": 98,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_GTM_MODULE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 62,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 99,
+      "source_excel_row": 99,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_ACESS_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 3,
+      "batch_eligibility": "REPRESENTATIVE",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 100,
+      "source_excel_row": 100,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_CALLEVEL_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 2,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 101,
+      "source_excel_row": 101,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_ID_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 3,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 102,
+      "source_excel_row": 102,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_LIMIT_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 4,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 103,
+      "source_excel_row": 103,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_NOFUNC_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 5,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 104,
+      "source_excel_row": 104,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_RESOURCE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 6,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 105,
+      "source_excel_row": 105,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_STATE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 7,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 106,
+      "source_excel_row": 106,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_VALUE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 8,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 107,
+      "source_excel_row": 107,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SERVICEID_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 9,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 108,
+      "source_excel_row": 108,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_ILLEGAL_ADDRESS_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 10,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 109,
+      "source_excel_row": 109,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_MISSINGEND_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 11,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 110,
+      "source_excel_row": 110,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_DISABLEDINT_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 12,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 111,
+      "source_excel_row": 111,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_STACK_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 13,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 112,
+      "source_excel_row": 112,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_PROTECTION_MEMORY_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 14,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 113,
+      "source_excel_row": 113,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_PROTECTION_TIME_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 15,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 114,
+      "source_excel_row": 114,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_PROTECTION_ARRIVAL_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 16,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 115,
+      "source_excel_row": 115,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_PROTECTION_LOCKED_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 17,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 116,
+      "source_excel_row": 116,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_PROTECTION_EXCEPTION_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 18,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 117,
+      "source_excel_row": 117,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_INTERFERENCE_DEADLOCK_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 19,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 118,
+      "source_excel_row": 118,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_NESTING_DEADLOCK_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 20,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 119,
+      "source_excel_row": 119,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SPINLOCK_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 21,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 120,
+      "source_excel_row": 120,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_CORE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 22,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 121,
+      "source_excel_row": 121,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_PARAM_POINTER_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 23,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 122,
+      "source_excel_row": 122,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_NO_BARRIER_PARTICIPANT_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 24,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 123,
+      "source_excel_row": 123,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_UNIMPLEMENTED_FUNCTIONALITY_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 25,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 124,
+      "source_excel_row": 124,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_NO_NTFSTACK_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 26,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 125,
+      "source_excel_row": 125,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_OVERFLOW_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 27,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 126,
+      "source_excel_row": 126,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_KILL_KERNEL_OBJ_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 28,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 127,
+      "source_excel_row": 127,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_NO_RESTARTTASK_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 29,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 128,
+      "source_excel_row": 128,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_CALL_NOT_ALLOWED_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 30,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 129,
+      "source_excel_row": 129,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_FUNCTION_UNAVAILABLE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 31,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 130,
+      "source_excel_row": 130,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_PROTECTION_SYSCALL_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 32,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 131,
+      "source_excel_row": 131,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_PROTECTION_IRQ_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 33,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 132,
+      "source_excel_row": 132,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_API_ERROR_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 34,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 133,
+      "source_excel_row": 133,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_ASSERTION_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 35,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 134,
+      "source_excel_row": 134,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_OVERLOAD_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 36,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 135,
+      "source_excel_row": 135,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_SYS_CROSS_CORE_REQUESTED_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 37,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 136,
+      "source_excel_row": 136,
+      "variant_id": "DEFAULT",
+      "category": "MCU_OS",
+      "fault_family": "OS_UNKNOW_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_OS_Test",
+          "physical_value": 38,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 228,
+      "source_excel_row": 228,
+      "variant_id": "DEFAULT",
+      "category": "MAGCHIP",
+      "fault_family": "MAG_CHIP_COMM_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Magchip_Fault_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 3,
+      "batch_eligibility": "REPRESENTATIVE",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 229,
+      "source_excel_row": 229,
+      "variant_id": "DEFAULT",
+      "category": "MAGCHIP",
+      "fault_family": "MAG_CHIP_COMPARE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Magchip_Fault_Test",
+          "physical_value": 2,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 230,
+      "source_excel_row": 230,
+      "variant_id": "DEFAULT",
+      "category": "MAGCHIP",
+      "fault_family": "MAG_CHIP_STATUS_RESET_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Magchip_Fault_Test",
+          "physical_value": 3,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 231,
+      "source_excel_row": 231,
+      "variant_id": "DEFAULT",
+      "category": "MAGCHIP",
+      "fault_family": "MAG_CHIP_STATUS_WATCHDOG_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Magchip_Fault_Test",
+          "physical_value": 4,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 232,
+      "source_excel_row": 232,
+      "variant_id": "DEFAULT",
+      "category": "MAGCHIP",
+      "fault_family": "MAG_CHIP_VOLTAGE_REGULATOR_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Magchip_Fault_Test",
+          "physical_value": 5,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 234,
+      "source_excel_row": 234,
+      "variant_id": "DEFAULT",
+      "category": "MAGCHIP",
+      "fault_family": "MAG_CHIP_STATUS_OVERFLOW",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Magchip_Fault_Test",
+          "physical_value": 7,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 235,
+      "source_excel_row": 235,
+      "variant_id": "DEFAULT",
+      "category": "MAGCHIP",
+      "fault_family": "MAG_CHIP_S_XYOL_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Magchip_Fault_Test",
+          "physical_value": 8,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 236,
+      "source_excel_row": 236,
+      "variant_id": "DEFAULT",
+      "category": "MAGCHIP",
+      "fault_family": "MAG_CHIP_MAGNITUDE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Magchip_Fault_Test",
+          "physical_value": 9,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 237,
+      "source_excel_row": 237,
+      "variant_id": "DEFAULT",
+      "category": "MAGCHIP",
+      "fault_family": "MAG_CHIP_INVALID_GMR_XY_VALUES_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Magchip_Fault_Test",
+          "physical_value": 10,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 238,
+      "source_excel_row": 238,
+      "variant_id": "DEFAULT",
+      "category": "MAGCHIP",
+      "fault_family": "MAG_CHIP_INVALID_GMR_ANGLE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Magchip_Fault_Test",
+          "physical_value": 11,
+          "unit": "",
+          "source_expression": "="
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1138,
+      "source_excel_row": 138,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_VGS_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 3,
+      "batch_eligibility": "REPRESENTATIVE",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1139,
+      "source_excel_row": 139,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_VREG_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 2,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1140,
+      "source_excel_row": 140,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_VREG_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 3,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1141,
+      "source_excel_row": 141,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_VDS_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 4,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1142,
+      "source_excel_row": 142,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_BOOTSTRAP_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 5,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1143,
+      "source_excel_row": 143,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_VBB_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 6,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1144,
+      "source_excel_row": 144,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_VBB_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 7,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1145,
+      "source_excel_row": 145,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_OVERCURRENT_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 8,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1146,
+      "source_excel_row": 146,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_OPENLOAD_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 9,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1147,
+      "source_excel_row": 147,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_EEPROM_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 10,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1148,
+      "source_excel_row": 148,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_OVERTEMPERATURE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 11,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1149,
+      "source_excel_row": 149,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_TEMPERATURE_WARNING_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 12,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1150,
+      "source_excel_row": 150,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_LOGIC_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 13,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1151,
+      "source_excel_row": 151,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_VBRG_OPEN_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 14,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1153,
+      "source_excel_row": 153,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_LSS_DISCONNECT_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 16,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1154,
+      "source_excel_row": 154,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_SENSE_AMP_DISCONNECT_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 17,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1155,
+      "source_excel_row": 155,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "PREDRIVER_SERIAL_ERROR_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.Predriver_Fault_Test",
+          "physical_value": 18,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1169,
+      "source_excel_row": 169,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_V5A_OVERVOLTAGE_FAULURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 3,
+      "batch_eligibility": "REPRESENTATIVE",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1170,
+      "source_excel_row": 170,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_V5A_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 2,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1171,
+      "source_excel_row": 171,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_V5CAN_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 3,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1172,
+      "source_excel_row": 172,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_V5CAN_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 4,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1173,
+      "source_excel_row": 173,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_V5P_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 5,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1174,
+      "source_excel_row": 174,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_V5P_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 6,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1175,
+      "source_excel_row": 175,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_V5B_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 7,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1176,
+      "source_excel_row": 176,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_V5B_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 8,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1177,
+      "source_excel_row": 177,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_VDD_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 9,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1178,
+      "source_excel_row": 178,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_VDD_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 10,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1179,
+      "source_excel_row": 179,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_VREG_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 11,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1180,
+      "source_excel_row": 180,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_VREG_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 12,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1181,
+      "source_excel_row": 181,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_3V3_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 13,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1182,
+      "source_excel_row": 182,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_3V3_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 14,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1183,
+      "source_excel_row": 183,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_BUCK_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 15,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1184,
+      "source_excel_row": 184,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_BUCK_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 16,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1185,
+      "source_excel_row": 185,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_VCC_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 17,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1186,
+      "source_excel_row": 186,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_VCP_OVERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 18,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1187,
+      "source_excel_row": 187,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_VCP_UNDERVOLTAGE_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 19,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1188,
+      "source_excel_row": 188,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_WDT_TIMEOUT_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 20,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1189,
+      "source_excel_row": 189,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_LX1_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 21,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1190,
+      "source_excel_row": 190,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_LX2_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 22,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1191,
+      "source_excel_row": 191,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_D1_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 23,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1192,
+      "source_excel_row": 192,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "A4412_SERIAL_ERROR_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.A4412_Fault",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "FAULT_INJECT.A4412_Fault_Test",
+          "physical_value": 24,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1224,
+      "source_excel_row": 224,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "MOTOR_OVER_CURRENT_BUS_FAILURE",
+      "writes": [
+        {
+          "signal": "Motor_Over_Current_Bus_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "Motor_CurrentBus_test",
+          "physical_value": 121,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "Motor_Speed_test",
+          "physical_value": 99,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 54,
+      "fdti_ms": 50,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1225,
+      "source_excel_row": 225,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "MOTOR_CONNECTION_FAILURE",
+      "writes": [
+        {
+          "signal": "Motor_Connect_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "mspd_test",
+          "physical_value": 299,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "lq_test",
+          "physical_value": 4.9,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "Vq_test",
+          "physical_value": 16.1,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1226,
+      "source_excel_row": 226,
+      "variant_id": "DEFAULT",
+      "category": "MULTI_SIGNAL_FIXED",
+      "fault_family": "MOTOR_OVER_CURRENT_PHASE_FAILURE",
+      "writes": [
+        {
+          "signal": "Motor_Over_Current_Phase_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "Motor_CurrentPhase_test",
+          "physical_value": 241,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "Mspd_test",
+          "physical_value": 999,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 54,
+      "fdti_ms": 50,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 1215,
+      "source_excel_row": 215,
+      "variant_id": "DEFAULT",
+      "category": "SPECIAL_SEQUENCE",
+      "fault_family": "ID_SHORT_TIME_PDC_OVER_LIMIT_FAILTURE",
+      "writes": [
+        {
+          "signal": "PDC_Fault_Pemt_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": ""
+        },
+        {
+          "signal": "PDC_Fault_Pemt_Test",
+          "physical_value": 3,
+          "unit": "",
+          "source_expression": ""
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 3,
+      "batch_eligibility": "REPRESENTATIVE",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2003,
+      "source_excel_row": 3,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "MOSFET_OVER_TEMPERATURE_FAILURE",
+      "writes": [
+        {
+          "signal": "Temp_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "Temp_Inject_Test",
+          "physical_value": 126,
+          "unit": "",
+          "source_expression": ">125"
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 3,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2104,
+      "source_excel_row": 4,
+      "variant_id": "HIGH",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "TEMPERATURE_SENSOR_ERROR_FAILURE",
+      "writes": [
+        {
+          "signal": "Temp_Senor_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "TempVoltage_Test",
+          "physical_value": 4.96,
+          "unit": "V",
+          "source_expression": ">4.95"
+        }
+      ],
+      "fhti_ms": 104,
+      "fdti_ms": 100,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "HARDWARE_VALIDATION_PENDING_ALL_VARIANTS",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2204,
+      "source_excel_row": 4,
+      "variant_id": "LOW",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "TEMPERATURE_SENSOR_ERROR_FAILURE",
+      "writes": [
+        {
+          "signal": "Temp_Senor_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "TempVoltage_Test",
+          "physical_value": 0.03,
+          "unit": "V",
+          "source_expression": "<0.05"
+        }
+      ],
+      "fhti_ms": 104,
+      "fdti_ms": 100,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "HARDWARE_VALIDATION_PENDING_ALL_VARIANTS",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2005,
+      "source_excel_row": 5,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "OVER_TEMPERATURE_PROTECT_FAILURE",
+      "writes": [
+        {
+          "signal": "Over_Temp_Inject_Start",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "Over_Temp_Warning_Inject",
+          "physical_value": 0.7,
+          "unit": "",
+          "source_expression": "<0.8"
+        }
+      ],
+      "fhti_ms": 1004,
+      "fdti_ms": 1000,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2237,
+      "source_excel_row": 137,
+      "variant_id": "HIGH",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "POWER_SOURCE_5V_FAILURE",
+      "writes": [
+        {
+          "signal": "Sensor_5V_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "Power_Source5V_Test",
+          "physical_value": 5.6,
+          "unit": "V",
+          "source_expression": ">5.5"
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "HARDWARE_VALIDATION_PENDING_ALL_VARIANTS",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2337,
+      "source_excel_row": 137,
+      "variant_id": "LOW",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "POWER_SOURCE_5V_FAILURE",
+      "writes": [
+        {
+          "signal": "Sensor_5V_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "Power_Source5V_Test",
+          "physical_value": 4.4,
+          "unit": "V",
+          "source_expression": "<4.5"
+        }
+      ],
+      "fhti_ms": 24,
+      "fdti_ms": 20,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "HARDWARE_VALIDATION_PENDING_ALL_VARIANTS",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2197,
+      "source_excel_row": 197,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "CURRENT_SENSOR_ERROR_N_FAILURE",
+      "writes": [
+        {
+          "signal": "curr_switch",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "IA_Curr_Offset",
+          "physical_value": 31,
+          "unit": "",
+          "source_expression": ">30"
+        }
+      ],
+      "fhti_ms": 54,
+      "fdti_ms": 50,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2211,
+      "source_excel_row": 211,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "ID_ACTIVE_RETURN_OVER_LIMIT_FAILTURE",
+      "writes": [
+        {
+          "signal": "Torque_AR_Fault_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "Aligning_Torque_Test",
+          "physical_value": 11.1,
+          "unit": "MotorToq",
+          "source_expression": ">10.1"
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2212,
+      "source_excel_row": 212,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "ID_DAMPING_COMPENSATION_OVER_LIMIT_FAILTURE",
+      "writes": [
+        {
+          "signal": "Torque_Damping_Fault_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "Damping_Torque_Test",
+          "physical_value": 10,
+          "unit": "MotorToq",
+          "source_expression": ">9"
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2213,
+      "source_excel_row": 213,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "ID_FRICTION_COMPENSATION_OVER_LIMIT_FAILTURE",
+      "writes": [
+        {
+          "signal": "Torque_FR_Fault_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "Friction_Torque_Value",
+          "physical_value": 1.5,
+          "unit": "MotorToq",
+          "source_expression": ">0.5"
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2214,
+      "source_excel_row": 214,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "ID_LONG_TIME_PDC_OVER_LIMIT_FAILTURE",
+      "writes": [
+        {
+          "signal": "PDC_Fault_Test",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "PDC_Angle_Value_Test",
+          "physical_value": 3,
+          "unit": "",
+          "source_expression": ">2"
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2218,
+      "source_excel_row": 218,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "ID_HAND_TORQUE_LOWER_LIMIT_FAILURE",
+      "writes": [
+        {
+          "signal": "AimTorqueCheckThreshold",
+          "physical_value": 10,
+          "unit": "MotorTorq",
+          "source_expression": "=10"
+        },
+        {
+          "signal": "BasicTorque_Switch",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "BasicTorque_Offset",
+          "physical_value": -6.9,
+          "unit": "MotorTorq",
+          "source_expression": "=-6.9"
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2219,
+      "source_excel_row": 219,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "ID_HAND_TORQUE_UPPER_LIMIT_FAILURE",
+      "writes": [
+        {
+          "signal": "AimTorqueCheckThreshold",
+          "physical_value": 10,
+          "unit": "MotorTorq",
+          "source_expression": "=10"
+        },
+        {
+          "signal": "BasicTorque_Switch",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "BasicTorque_Offset",
+          "physical_value": 6.9,
+          "unit": "MotorTorq",
+          "source_expression": "=6.9"
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2220,
+      "source_excel_row": 220,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "ID_HAND_TORQUE_UPPER_LIMIT_MODEL_2_FAILURE",
+      "writes": [
+        {
+          "signal": "BasicTorque_Switch",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "BasicTorque_Offset",
+          "physical_value": -6.9,
+          "unit": "MotorTorq",
+          "source_expression": "=-6.9"
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 2221,
+      "source_excel_row": 221,
+      "variant_id": "DEFAULT",
+      "category": "PARAMETER_OFFSET",
+      "fault_family": "ID_HAND_TORQUE_LOWER_LIMIT_MODEL_2_FAILURE",
+      "writes": [
+        {
+          "signal": "BasicTorque_Switch",
+          "physical_value": 1,
+          "unit": "",
+          "source_expression": "=1"
+        },
+        {
+          "signal": "BasicTorque_Offset",
+          "physical_value": 6.9,
+          "unit": "MotorTorq",
+          "source_expression": "=6.9"
+        }
+      ],
+      "fhti_ms": 204,
+      "fdti_ms": 200,
+      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state",
+        "a2l_conversion_not_validated"
+      ]
+    }
+  ],
+  "manual_scope": {
+    "VOLTAGE_OPERATION": [
+      194,
+      196
+    ],
+    "HARDWARE_INJECTION": [
+      17,
+      18,
+      19,
+      20,
+      30,
+      31,
+      32,
+      33,
+      35
+    ],
+    "EXCLUDED_VBUS": [
+      199
+    ]
+  }
+}
