@@ -83,3 +83,27 @@ class MultiSignalTests(unittest.TestCase):
                 path.write_text(json.dumps(data), encoding='utf-8')
                 with self.assertRaises(ValueError):
                     load_catalog(path)
+
+    def test_repeated_signal_captures_once_writes_in_order_and_restores_once(self):
+        writes = (SimpleNamespace(signal='X', value=1, order=1), SimpleNamespace(signal='X', value=3, order=2))
+        case = SimpleNamespace(writes=writes)
+        client = Client(originals={'X': 9})
+        evidence = {}
+        MultiSignalRunner(client, [SimpleNamespace(name='X')], case).inject_and_restore(lambda: None, evidence=evidence)
+        self.assertEqual(client.calls, [('X', 1), ('X', 3), ('X', 9)])
+        self.assertEqual(evidence['originals'], [{'signal': 'X', 'raw': 9, 'physical': 9, 'data': '09', 'order': 1}])
+        self.assertEqual(len(evidence['restoration']), 1)
+        self.assertTrue(evidence['restoration'][0]['verified'])
+
+    def test_repeated_second_write_failure_restores_pretest_original_once(self):
+        writes = (SimpleNamespace(signal='X', value=1, order=1), SimpleNamespace(signal='X', value=3, order=2))
+        case = SimpleNamespace(writes=writes)
+        class SecondWriteClient(Client):
+            def write_and_verify(self, parameter, value, **kwargs):
+                self.calls.append((parameter.name, value))
+                actual = value + 1 if len(self.calls) == 2 else value
+                return SimpleNamespace(data=bytes([int(value)])), SimpleNamespace(data=bytes([int(actual)])), actual == value
+        client = SecondWriteClient(originals={'X': 9})
+        with self.assertRaisesRegex(RuntimeError, 'X'):
+            MultiSignalRunner(client, [SimpleNamespace(name='X')], case).inject_and_restore(lambda: None)
+        self.assertEqual(client.calls, [('X', 1), ('X', 3), ('X', 9)])

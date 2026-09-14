@@ -16,8 +16,10 @@ class MultiSignalRunner:
 
     def inject_and_restore(self, observe, before_write=None, evidence=None):
         originals = {}
-        attempted = []
+        attempted_signals = []
         for write in self.writes:
+            if write.signal in originals:
+                continue
             original = self.client.read(self.parameters[write.signal])
             originals[write.signal] = original
             if evidence is not None:
@@ -28,7 +30,8 @@ class MultiSignalRunner:
                 before_write()
             for write in self.writes:
                 parameter = self.parameters[write.signal]
-                attempted.append(write)
+                if write.signal not in attempted_signals:
+                    attempted_signals.append(write.signal)
                 expected, actual, ok = self.client.write_and_verify(parameter, write.value, tolerance=0)
                 verified = bool(ok and actual.data == expected.data)
                 if evidence is not None:
@@ -41,14 +44,14 @@ class MultiSignalRunner:
         finally:
             restoration = []
             restore_failures = []
-            for write in reversed(attempted):
-                parameter, original = self.parameters[write.signal], originals[write.signal]
+            for signal in reversed(attempted_signals):
+                parameter, original = self.parameters[signal], originals[signal]
                 expected, actual, ok = self.client.write_and_verify(parameter, original.physical_value, tolerance=0)
                 verified = bool(ok and actual.data == original.data)
-                restoration.append({"signal": write.signal, "order": write.order, "expected_data": original.data.hex(),
+                restoration.append({"signal": signal, "expected_data": original.data.hex(),
                     "readback_data": actual.data.hex(), "verified": verified, "monotonic": time.monotonic()})
                 if not verified:
-                    restore_failures.append(write.signal)
+                    restore_failures.append(signal)
             if evidence is not None:
                 evidence["restoration"] = restoration
             if restore_failures:
