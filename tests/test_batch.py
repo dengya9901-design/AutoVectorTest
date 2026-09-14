@@ -1,11 +1,22 @@
 import json
 import tempfile
+import threading
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from recar.batch import SENT_ALL_ROWS, SENT_ALL_VALUES, failures, resolve_named_batch
+from recar.batch import (
+    MAX_PRETRIGGER_REACQUISITIONS,
+    SENT_ALL_ROWS,
+    SENT_ALL_VALUES,
+    execute_case,
+    failures,
+    resolve_named_batch,
+    result_entry,
+    save,
+)
+from recar.daq import EvidenceDaq
 
 
 def safe_result(functional_status="COMPLETED"):
@@ -19,6 +30,9 @@ def safe_result(functional_status="COMPLETED"):
         for identifier, offset in ((0x11A, 0.0), (0x11B, 0.01), (0x11C, 0.02))
     ]
     return {
+        "canoe": {"running": True, "engine": 1},
+        "xcp_unlock": "COMPLETED",
+        "injection_parameters_readable": True,
         "baseline": "VERIFIED",
         "pretest_baseline_status": "PRETEST_BASELINE_VERIFIED",
         "injection": "READBACK_VERIFIED",
@@ -72,6 +86,51 @@ def safe_result(functional_status="COMPLETED"):
             "can_traffic_fresh": True,
         },
     }
+
+
+def failed_pretrigger_result(maximum_gap_ms=34.0):
+    result = safe_result("BLOCKED")
+    result.update(
+        {
+            "injection": "NOT_EXECUTED",
+            "selector_readback": 0,
+            "baseline": "VERIFIED",
+            "pretest_baseline_status": "NOT_VERIFIED",
+            "posttest_baseline_status": "NOT_VERIFIED",
+            "pretest_baseline_signals": {
+                "motor_state": 9,
+                "IgnStatus": 1,
+                "EPS_WarningLampSt": 0,
+                "VCU_Engine_Running": 1,
+            },
+            "error": "RuntimeError: DAQ pretrigger has a data gap",
+            "error_classification": "INFRASTRUCTURE_ERROR",
+            "recovery": "NOT_EXECUTED",
+            "reset_positive_response": None,
+            "calibration_evidence": {
+                "original": {"raw": 0, "data": "00"},
+                "restoration": {
+                    "verified": True,
+                    "expected_data": "00",
+                    "readback_data": "00",
+                },
+            },
+            "pretrigger_evidence": {
+                "status": "FAILED",
+                "fresh": True,
+                "sample_count": 130,
+                "window_duration_ms": 1290.0,
+                "maximum_gap_ms": maximum_gap_ms,
+                "allowed_gap_ms": 30.0,
+                "gaps_above_allowed": 1,
+                "daq_error": None,
+                "acquisition_scope": "CURRENT_CONNECTION_ONLY",
+            },
+            "recovery_evidence": {},
+        }
+    )
+    result.pop("injection_start_monotonic", None)
+    return result
 
 
 def run_mock_batch(root, selected, result_factory):
@@ -141,6 +200,150 @@ class BatchTests(unittest.TestCase):
         self.assertEqual(summary["status"], "BATCH_COMPLETED_ALL_PASS")
         self.assertEqual(summary["aggregate"]["requested"], 16)
         self.assertEqual(summary["aggregate"]["PASS"], 16)
+
+    def test_first_pretrigger_failure_then_fresh_pass_executes_once(self):
+        case = resolve_named_batch("sent-all")[0]
+        attempts = [
+            (0, Path("failed_window"), failed_pretrigger_result()),
+            (0, Path("fresh_window"), safe_result()),
+        ]
+        with patch("recar.batch.launch_case", side_effect=attempts) as launch:
+            entry, _, _ = execute_case(case, 1, Path("batch"), "session-new")
+        self.assertEqual(launch.call_count, 2)
+        self.assertEqual(entry["classification"], "PASS")
+        self.assertTrue(entry["pretrigger_attempts"][0]["no_injection_write_confirmed"])
+        self.assertTrue(entry["pretrigger_attempts"][0]["reacquisition_scheduled"])
+        self.assertNotEqual(
+            entry["pretrigger_attempts"][0]["individual_result"],
+            entry["pretrigger_attempts"][1]["individual_result"],
+        )
+
+    def test_two_pretrigger_failures_then_third_fresh_pass(self):
+        case = resolve_named_batch("sent-all")[0]
+        attempts = [
+            (0, Path("failed_window_1"), failed_pretrigger_result()),
+            (0, Path("failed_window_2"), failed_pretrigger_result()),
+            (0, Path("fresh_window_3"), safe_result()),
+        ]
+        with patch("recar.batch.launch_case", side_effect=attempts) as launch:
+            entry, _, _ = execute_case(case, 1, Path("batch"), "session-new")
+        self.assertEqual(launch.call_count, 3)
+        self.assertEqual(entry["classification"], "PASS")
+        self.assertEqual(len(entry["pretrigger_attempts"]), 3)
+
+    def test_all_pretrigger_windows_fail_after_bounded_attempts(self):
+        case = resolve_named_batch("sent-all")[0]
+        attempts = [
+            (0, Path(f"failed_window_{number}"), failed_pretrigger_result())
+            for number in range(1, 4)
+        ]
+        with patch("recar.batch.launch_case", side_effect=attempts) as launch:
+            entry, _, _ = execute_case(case, 1, Path("batch"), "session-new")
+        self.assertEqual(MAX_PRETRIGGER_REACQUISITIONS, 2)
+        self.assertEqual(launch.call_count, 3)
+        self.assertEqual(entry["classification"], "BLOCKED_INFRASTRUCTURE")
+        self.assertFalse(entry["pretrigger_attempts"][-1]["reacquisition_scheduled"])
+        self.assertTrue(
+            all(
+                attempt["no_injection_write_confirmed"]
+                for attempt in entry["pretrigger_attempts"]
+            )
+        )
+
+    def test_ten_ms_daq_threshold_remains_thirty_ms(self):
+        daq = EvidenceDaq.__new__(EvidenceDaq)
+        daq.period_ms = 10
+        daq.lock = threading.Lock()
+        daq.error = None
+        daq.rows = [
+            {"monotonic": index / 100, "signals": {}} for index in range(121)
+        ]
+        stats = daq.pretrigger_stats(now=1.2)
+        self.assertEqual(stats["allowed_gap_ms"], 30.0)
+        self.assertEqual(stats["status"], "PASSED")
+
+    def test_post_injection_infrastructure_failure_is_never_reacquired(self):
+        case = resolve_named_batch("sent-all")[0]
+        result = safe_result("BLOCKED")
+        result["error"] = "RuntimeError: XCP readback failed"
+        with patch(
+            "recar.batch.launch_case", return_value=(0, Path("written_case"), result)
+        ) as launch:
+            entry, _, _ = execute_case(case, 1, Path("batch"), "session-new")
+        self.assertEqual(launch.call_count, 1)
+        self.assertEqual(entry["injection_readback"], "READBACK_VERIFIED")
+        self.assertEqual(entry["classification"], "BLOCKED_INFRASTRUCTURE")
+        self.assertFalse(entry["pretrigger_attempts"][0]["retry_eligible"])
+
+    def test_resume_from_three_merges_prefix_without_rerunning_it(self):
+        from recar.batch import main
+
+        cases = resolve_named_batch("sent-all")
+        calls = []
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            previous = root / "original_session"
+            previous.mkdir()
+            old_reports = [root / "old_case_1", root / "old_case_2"]
+            for report in old_reports:
+                report.mkdir()
+                (report / "report.html").write_text("<html>old report</html>")
+                (report / "result.json").write_text("{}")
+            prefix = [
+                result_entry(
+                    case,
+                    safe_result(),
+                    index,
+                    old_reports[index - 1],
+                    execution_session_id="original_session",
+                )
+                for index, case in enumerate(cases[:2], 1)
+            ]
+            save(
+                previous,
+                prefix,
+                "BATCH_ABORTED_INFRASTRUCTURE",
+                cases,
+                "sent-all",
+                execution_session_id="original_session",
+            )
+
+            def launch(command, **kwargs):
+                selection_id = int(command[-1])
+                calls.append(selection_id)
+                report = root / f"resumed_case_{selection_id}"
+                report.mkdir()
+                (report / "result.json").write_text(json.dumps(safe_result()))
+                (report / "report.html").write_text("<html>case report</html>")
+                kwargs["stdout"].write(str(report) + "\n")
+                return SimpleNamespace(returncode=0)
+
+            with (
+                patch("recar.batch.ROOT", root),
+                patch("recar.batch.subprocess.run", side_effect=launch),
+                patch("builtins.print"),
+            ):
+                main(
+                    [
+                        "--execute-hardware",
+                        "--batch",
+                        "sent-all",
+                        "--resume-from",
+                        "3",
+                        "--merge-from",
+                        str(previous / "batch_summary.json"),
+                    ]
+                )
+            resumed = next(root.glob("reports/batch/*/batch_summary.json"))
+            summary = json.loads(resumed.read_text())
+
+        self.assertEqual(calls, list(range(3, 17)))
+        self.assertEqual(len(summary["rows"]), 16)
+        self.assertEqual(summary["rows"][0]["execution_session_id"], "original_session")
+        self.assertEqual(summary["rows"][1]["execution_session_id"], "original_session")
+        self.assertEqual(summary["rows"][0]["individual_report"], str(old_reports[0] / "report.html"))
+        self.assertNotEqual(summary["rows"][2]["execution_session_id"], "original_session")
+        self.assertEqual(summary["status"], "BATCH_COMPLETED_ALL_PASS")
 
     def test_continues_after_product_fail_and_incomplete(self):
         statuses = {1: "PRODUCT_FAIL", 2: "INCOMPLETE", 3: "COMPLETED"}
