@@ -2,6 +2,8 @@
   "kind": "RECAR_HARDWARE_VALIDATION_MATRIX",
   "execution": "NOT_RUN",
   "source_commit": "faff632",
+  "environment_status": "ENVIRONMENT_SANITY_VERIFIED",
+  "environment_reference_report": "C:\\recar\\Autotest\\reports\\probe\\20260914T175119567502Z\\report.html",
   "entry_count": 154,
   "stages": {
     "1": "SENT known-good environment sanity",
@@ -554,8 +556,9 @@
       "a2l_validation_status": "OFFLINE_VERIFIED",
       "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "previous_hardware_execution_status": "HARDWARE_EXECUTED_INCOMPLETE",
+      "engineering_status": "PARKED_EXTERNAL_ANALYSIS",
       "recommended_stage": 2,
-      "batch_eligibility": "REPRESENTATIVE",
+      "batch_eligibility": "BLOCKED_PENDING_EXTERNAL_ANALYSIS",
       "aggregate_row_status": "NOT_APPLICABLE",
       "stop_conditions": [
         "xcp_write_or_readback_failure",
@@ -1513,9 +1516,11 @@
       "fdti_ms": 16,
       "a2l_validation_status": "OFFLINE_VERIFIED",
       "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
-      "previous_hardware_execution_status": "NOT_RUN",
+      "previous_hardware_execution_status": "HARDWARE_EXECUTED_INCOMPLETE",
+      "engineering_status": "BLOCKED_INFRASTRUCTURE_VECTOR_TX_QUEUE_FULL",
+      "hardware_evidence_report": "C:\\recar\\Autotest\\reports\\probe\\20260914T175807715159Z\\report.html",
       "recommended_stage": 3,
-      "batch_eligibility": "REPRESENTATIVE",
+      "batch_eligibility": "BLOCKED_PENDING_REPRESENTATIVE_REVALIDATION",
       "aggregate_row_status": "NOT_APPLICABLE",
       "stop_conditions": [
         "xcp_write_or_readback_failure",
