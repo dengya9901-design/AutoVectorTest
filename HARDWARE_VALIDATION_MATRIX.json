@@ -555,7 +555,7 @@
       "fdti_ms": 16,
       "a2l_validation_status": "OFFLINE_VERIFIED",
       "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
-      "previous_hardware_execution_status": "HARDWARE_EXECUTED_INCOMPLETE",
+      "previous_hardware_execution_status": "REPEATABLE_HARDWARE_EXECUTED_INCOMPLETE",
       "engineering_status": "PARKED_EXTERNAL_ANALYSIS",
       "recommended_stage": 2,
       "batch_eligibility": "BLOCKED_PENDING_EXTERNAL_ANALYSIS",

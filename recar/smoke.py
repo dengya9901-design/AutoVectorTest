@@ -84,7 +84,7 @@ def run(xcp, app, monitor, parameters, frames, out, result, daq=None, *, case):
             normal = values["motor_state"] == 9 and values["EPS_WarningLampSt"] == 0 and values['IgnStatus'] == 1
             consecutive = consecutive + 1 if normal else 0
             if consecutive >= 5:
-                return
+                return values
             time.sleep(0.05)
         raise RuntimeError("Normal baseline was not observed")
 
@@ -100,8 +100,10 @@ def run(xcp, app, monitor, parameters, frames, out, result, daq=None, *, case):
         recent = [f for f in list(frames) if f["id"] == 0x53 and time.monotonic()-f["monotonic"] < 0.5]
         if not recent or db.decode_message(0x53, bytes.fromhex(recent[-1]["data"]), decode_choices=False)["VCU_Engine_Running"] != 1:
             raise RuntimeError("Engine_Running not confirmed on CAN")
-        wait_normal("baseline")
+        baseline_values = wait_normal("baseline")
+        baseline_values["VCU_Engine_Running"] = 1
         result["baseline"] = "VERIFIED"
+        result["pretest_baseline_signals"] = baseline_values
         observed = []
 
         def before_write():
@@ -109,6 +111,13 @@ def run(xcp, app, monitor, parameters, frames, out, result, daq=None, *, case):
                 stats = daq.pretrigger_stats()
                 result["pretrigger_evidence"] = stats
                 daq.require_pretrigger(stats)
+            if (
+                result.get("baseline") != "VERIFIED"
+                or result.get("xcp_unlock") != "COMPLETED"
+                or result.get("injection_parameters_readable") is not True
+            ):
+                raise RuntimeError("Pre-test baseline is not verified")
+            result["pretest_baseline_status"] = "PRETEST_BASELINE_VERIFIED"
             result["injection_start_monotonic"] = time.monotonic()
             log("injection_write_start", value=fault_value)
 
@@ -211,6 +220,9 @@ def run(xcp, app, monitor, parameters, frames, out, result, daq=None, *, case):
         )
         if not recovery_ready:
             result["recovery"] = "BASELINE_NOT_VERIFIED"
+            result["posttest_baseline_status"] = "POSTTEST_BASELINE_NOT_VERIFIED"
+        else:
+            result["posttest_baseline_status"] = "POSTTEST_BASELINE_VERIFIED"
         if response is None and result["recovery"] == "BASELINE_VERIFIED":
             result["recovery"] = "BASELINE_VERIFIED_RESET_RESPONSE_MISSING"
     finally:
