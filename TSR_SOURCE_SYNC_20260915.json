@@ -20,6 +20,12 @@
   ],
   "catalog_updates": [
     {
+      "excel_row": 42,
+      "classification": "CATALOG_UPDATE_REQUIRED",
+      "hardware_eligibility": "EXPLICIT_STEP_AND_FDTI_FHTI_DEFINED",
+      "writes": [["FAULT_INJECT.MCU_Fault_Test", 6]]
+    },
+    {
       "excel_row": 218,
       "classification": "CATALOG_UPDATE_REQUIRED",
       "writes": [["BasicTorque_Switch", 1], ["BasicTorque_Offset", -6.9]],

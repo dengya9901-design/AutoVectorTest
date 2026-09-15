@@ -14,7 +14,7 @@ class CatalogTests(unittest.TestCase):
     def test_family_counts_and_required_mapping(self):
         self.assertEqual(families(), ('MAGCHIP', 'MCU', 'MCU_OS', 'MULTI_SIGNAL_FIXED', 'PARAMETER_OFFSET', 'SENT', 'SPECIAL_SEQUENCE'))
         self.assertEqual({family: len(choices(family)) for family in families()},
-                         {'SENT': 16, 'MCU': 30, 'MCU_OS': 38, 'MAGCHIP': 10, 'MULTI_SIGNAL_FIXED': 44, 'SPECIAL_SEQUENCE': 1, 'PARAMETER_OFFSET': 15})
+                         {'SENT': 16, 'MCU': 31, 'MCU_OS': 38, 'MAGCHIP': 10, 'MULTI_SIGNAL_FIXED': 44, 'SPECIAL_SEQUENCE': 1, 'PARAMETER_OFFSET': 15})
         sent = select_case(1, 'SENT')
         mcu = select_case(37, 'MCU')
         os_case = select_case(99, 'MCU_OS')
@@ -23,6 +23,9 @@ class CatalogTests(unittest.TestCase):
                          ('FAULT_INJECT.Sent_Fault_Test', 1, 24, 20))
         self.assertEqual((mcu.injection_signal, mcu.injection_value, mcu.fhti_ms, mcu.fdti_ms),
                          ('FAULT_INJECT.MCU_Fault_Test', 1, 20, 16))
+        row_42 = select_case(42, 'MCU')
+        self.assertEqual((row_42.excel_row, row_42.injection_value, row_42.expected_fault, row_42.fhti_ms, row_42.fdti_ms),
+                         (42, 6, 'MCU_CORE0_CLKMTST_FAILURE', 20, 16))
         self.assertEqual((os_case.injection_signal, os_case.injection_value),
                          ('FAULT_INJECT.MCU_OS_Test', 1))
         self.assertEqual((magchip.injection_signal, magchip.injection_value),

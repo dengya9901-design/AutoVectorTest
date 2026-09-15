@@ -575,6 +575,32 @@
     },
     {
       "family": "MCU",
+      "selection_id": 42,
+      "excel_row": 42,
+      "tsr_id": "FN-20999",
+      "injection_signal": "FAULT_INJECT.MCU_Fault_Test",
+      "injection_value": 6,
+      "expected_fault": "MCU_CORE0_CLKMTST_FAILURE",
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "enabled": true,
+      "description": "internal fault detection",
+      "source_cells": {
+        "tsr_id": "A36",
+        "injection": "G42",
+        "expected_fault": "E42",
+        "fhti_ms": "C42",
+        "fdti_ms": "D42"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "OFFLINE_VERIFIED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "Explicit latest-TSR injection definition; XCP value restoration is not DTC clearing."
+    },
+    {
+      "family": "MCU",
       "selection_id": 74,
       "excel_row": 74,
       "tsr_id": "FN-20999",

@@ -4,7 +4,7 @@
   "source_commit": "faff632",
   "environment_status": "ENVIRONMENT_SANITY_VERIFIED",
   "environment_reference_report": "C:\\recar\\Autotest\\reports\\probe\\20260914T175119567502Z\\report.html",
-  "entry_count": 154,
+  "entry_count": 155,
   "stages": {
     "1": "SENT known-good environment sanity",
     "2": "MCU Row 37 unresolved evidence investigation",
@@ -696,6 +696,37 @@
         "expected_evidence_missing",
         "unknown_ecu_state",
         "a2l_conversion_not_validated"
+      ]
+    },
+    {
+      "selection_id": 42,
+      "source_excel_row": 42,
+      "variant_id": "DEFAULT",
+      "category": "MCU",
+      "fault_family": "MCU_CORE0_CLKMTST_FAILURE",
+      "writes": [
+        {
+          "signal": "FAULT_INJECT.MCU_Fault_Test",
+          "physical_value": 6,
+          "unit": "",
+          "source_expression": "=6"
+        }
+      ],
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "a2l_validation_status": "A2L_READY",
+      "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "previous_hardware_execution_status": "NOT_RUN",
+      "recommended_stage": 4,
+      "batch_eligibility": "REQUIRES_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "aggregate_row_status": "NOT_APPLICABLE",
+      "stop_conditions": [
+        "xcp_write_or_readback_failure",
+        "incomplete_required_daq_evidence",
+        "communication_not_recovered",
+        "restoration_failure",
+        "expected_evidence_missing",
+        "unknown_ecu_state"
       ]
     },
     {

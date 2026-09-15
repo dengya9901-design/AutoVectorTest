@@ -48,7 +48,10 @@ class LatestTsrSourceSyncTests(unittest.TestCase):
 
     def test_mcu_scope_and_row_98_definition_are_unchanged(self):
         cases = choices('MCU')
-        self.assertEqual(len(cases), 30)
+        self.assertEqual(len(cases), 31)
+        row_42 = next(case for case in cases if case.excel_row == 42)
+        self.assertEqual((row_42.injection_value, row_42.expected_fault),
+                         (6, 'MCU_CORE0_CLKMTST_FAILURE'))
         row_98 = next(case for case in cases if case.excel_row == 98)
         self.assertEqual((row_98.injection_signal, row_98.injection_value, row_98.expected_fault),
                          ('FAULT_INJECT.MCU_Fault_Test', 62, 'MCU_GTM_MODULE_FAILURE'))
@@ -57,5 +60,4 @@ class LatestTsrSourceSyncTests(unittest.TestCase):
     def test_explicit_batch_scope_does_not_depend_on_h_column(self):
         self.assertIn('not an execution input', self.sync['selection_policy'])
         self.assertEqual([case.injection_value for case in resolve_named_batch('sent-all')], list(range(1, 17)))
-        self.assertEqual(len(choices()), 154)
-
+        self.assertEqual(len(choices()), 155)
