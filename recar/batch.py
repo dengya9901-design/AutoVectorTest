@@ -80,11 +80,67 @@ def pretrigger_reacquisition_eligible(case, result):
     )
 
 
+def _case_field(case, name):
+    if isinstance(case, dict):
+        return case.get(name)
+    return getattr(case, name, None)
+
+
+def evaluate_timing(case, timing):
+    """Evaluate the confirmed A/B/C timing model without adding tolerance.
+
+    A is fault occurrence, B is fault reported, and C is system response.
+    FDTI is A->B.  FHTI is the complete A->C handling interval.  B->C is
+    retained as the measured FRTI interval, but the catalog has no separate
+    FRTI limit.
+    """
+    result = {
+        "mapping": {
+            "FDTI": "A_TO_B",
+            "FRTI": "B_TO_C",
+            "FHTI": "A_TO_C",
+        },
+        "fdti_ms": timing.get("11B_minus_11A_ms"),
+        "frti_ms": timing.get("11C_minus_11B_ms"),
+        "fhti_ms": timing.get("11C_minus_11A_ms"),
+        "fdti_limit_ms": _case_field(case, "fdti_ms"),
+        "fhti_limit_ms": _case_field(case, "fhti_ms"),
+        "fdti_verdict": "NOT_EVALUATED",
+        "fhti_verdict": "NOT_EVALUATED",
+        "timing_verdict": "NOT_EVALUATED",
+    }
+    if timing.get("pairing") != "UNIQUE_ORDERED_TRIPLET":
+        return result
+    if result["fdti_ms"] is None or result["fhti_ms"] is None:
+        return result
+    if result["fdti_limit_ms"] is None or result["fhti_limit_ms"] is None:
+        result["timing_verdict"] = "TIMING_RULE_CONFIRMATION_REQUIRED"
+        return result
+    result["fdti_verdict"] = (
+        "FDTI_PASS"
+        if result["fdti_ms"] <= result["fdti_limit_ms"]
+        else "FDTI_FAIL"
+    )
+    result["fhti_verdict"] = (
+        "FHTI_PASS"
+        if result["fhti_ms"] <= result["fhti_limit_ms"]
+        else "FHTI_FAIL"
+    )
+    result["timing_verdict"] = (
+        "TIMING_PASS"
+        if result["fdti_verdict"] == "FDTI_PASS"
+        and result["fhti_verdict"] == "FHTI_PASS"
+        else "TIMING_FAIL"
+    )
+    return result
+
+
 def failures(result):
+    timing = result.get("evidence", {}).get("timing", {})
+    timing_result = evaluate_timing(result.get("test_case", {}), timing)
     checks = {
         "injection_readback": result.get("injection") == "READBACK_VERIFIED",
         "selector_restore": result.get("selector_restore") == "READBACK_VERIFIED",
-        "warning": result.get("warning_observed") is True,
         "reset_response": bool(result.get("reset_positive_response")),
         "recovery": str(result.get("recovery", "")).startswith("BASELINE_VERIFIED"),
         "window": result.get("evidence", {}).get("window_complete") is True,
@@ -92,6 +148,9 @@ def failures(result):
             result.get("evidence", {}).get("timing", {}).get("pairing")
             == "UNIQUE_ORDERED_TRIPLET"
         ),
+        "timing_evidence": timing_result["timing_verdict"]
+        not in {"NOT_EVALUATED", "TIMING_RULE_CONFIRMATION_REQUIRED"},
+        "timing": timing_result["timing_verdict"] != "TIMING_FAIL",
         "daq": (
             result.get("daq_period_ms") == 10
             and not result.get("daq_error")
@@ -105,19 +164,40 @@ def failures(result):
 
 
 def classify(result):
-    reasons = failures(result)
-    infrastructure = {"injection_readback", "selector_restore", "window", "daq", "errors"}
-    status = (
-        "BLOCKED"
-        if infrastructure.intersection(reasons)
-        else "INCOMPLETE"
-        if reasons
-        else "COMPLETED"
+    timing = evaluate_timing(
+        result.get("test_case", {}), result.get("evidence", {}).get("timing", {})
     )
+    reasons = failures(result)
+    evaluation_infrastructure = {
+        "injection_readback",
+        "selector_restore",
+        "window",
+        "daq",
+        "errors",
+    }
+    if evaluation_infrastructure.intersection(reasons):
+        status = "BLOCKED"
+    elif "event_pairing" in reasons or "timing_evidence" in reasons:
+        status = "INCOMPLETE"
+    elif "timing" in reasons:
+        status = "PRODUCT_FAIL"
+    else:
+        status = "PASS"
     return {
         "status": status,
-        "reasons": reasons,
-        "timing_verdict": "NOT_EVALUATED",
+        "reasons": [
+            reason
+            for reason in reasons
+            if reason in evaluation_infrastructure
+            or reason in {"event_pairing", "timing_evidence", "timing"}
+        ],
+        "fdti_verdict": timing["fdti_verdict"],
+        "fhti_verdict": timing["fhti_verdict"],
+        "timing_verdict": timing["timing_verdict"],
+        "timing_mapping": timing["mapping"],
+        "warning_lamp": "SUPPORTING_EVIDENCE_ONLY",
+        "ibus": "SUPPORTING_EVIDENCE_ONLY",
+        "ecu_status": "SUPPORTING_EVIDENCE_ONLY",
         "dtc": "NOT_IMPLEMENTED",
     }
 
@@ -142,11 +222,11 @@ def batch_classification(
     isolation_failures = (
         recovery_failures(result) if isolation_failures is None else isolation_failures
     )
-    if process_returncode or functional_status == "BLOCKED" or isolation_failures:
+    if process_returncode or functional_status in {"BLOCKED", "BLOCKED_INFRASTRUCTURE"} or isolation_failures:
         return "BLOCKED_INFRASTRUCTURE"
-    if functional_status == "COMPLETED":
-        return "PASS"
-    if functional_status in {"PASS", "PRODUCT_FAIL", "INCOMPLETE"}:
+    if functional_status in {"PASS", "COMPLETED", "PRODUCT_FAIL", "INCOMPLETE"}:
+        if functional_status == "COMPLETED":
+            return "PASS"
         return functional_status
     return "INCOMPLETE"
 
@@ -162,8 +242,9 @@ def result_entry(
     pretrigger_attempts=None,
 ):
     timing = result.get("evidence", {}).get("timing", {})
-    functional = result.get("functional_execution", {})
-    functional_status = functional.get("status") or classify(result)["status"]
+    evaluated_result = {**result, "test_case": result.get("test_case") or case.metadata()}
+    functional = classify(evaluated_result)
+    functional_status = functional["status"]
     pretrigger = result.get("pretrigger_evidence", {})
     recovery = result.get("recovery_evidence", {})
     pretest_status = result.get("pretest_baseline_status", "NOT_VERIFIED")
@@ -221,8 +302,13 @@ def result_entry(
             "A_to_B_ms": timing.get("11B_minus_11A_ms"),
             "B_to_C_ms": timing.get("11C_minus_11B_ms"),
             "A_to_C_ms": timing.get("11C_minus_11A_ms"),
-            "verdict": functional.get("timing_verdict", "NOT_EVALUATED"),
+            "fdti_verdict": functional["fdti_verdict"],
+            "fhti_verdict": functional["fhti_verdict"],
+            "verdict": functional["timing_verdict"],
         },
+        "supporting_evidence": result.get("evidence", {}).get(
+            "supporting_signals", {}
+        ),
         "restoration": "READBACK_VERIFIED" if restoration_ok else "NOT_VERIFIED",
         "hard_reset_response": response_data or ("RECEIVED" if response else "NOT_OBSERVED"),
         "stabilization_seconds": recovery.get("stabilization", {}).get("elapsed_seconds"),
@@ -231,7 +317,7 @@ def result_entry(
         "classification": batch_classification(
             functional_status, result, process_returncode, isolation_failures
         ),
-        "functional_failures": failures(result),
+        "functional_failures": functional["reasons"],
         "recovery_failures": isolation_failures,
         "individual_report": str(report / "report.html"),
         "individual_result": str(report / "result.json"),
@@ -260,8 +346,11 @@ def not_run_entry(case, execution_order, aborted):
             "A_to_B_ms": None,
             "B_to_C_ms": None,
             "A_to_C_ms": None,
+            "fdti_verdict": "NOT_EVALUATED",
+            "fhti_verdict": "NOT_EVALUATED",
             "verdict": "NOT_EVALUATED",
         },
+        "supporting_evidence": {},
         "restoration": "NOT_RUN",
         "hard_reset_response": "NOT_RUN",
         "stabilization_seconds": None,
@@ -439,6 +528,18 @@ def _cell(value, digits=None):
     return html.escape(str(value))
 
 
+def _support_cell(row, name):
+    signal = row.get("supporting_evidence", {}).get(name, {})
+    if not signal:
+        return "—"
+    if name == "EcuStatus":
+        return _cell(signal.get("unique_values"))
+    low, high = signal.get("minimum"), signal.get("maximum")
+    if isinstance(low, (int, float)) and isinstance(high, (int, float)):
+        return f"{low:.3f} … {high:.3f}"
+    return "—"
+
+
 def save(
     out,
     entries,
@@ -491,26 +592,31 @@ def save(
             f'<td>{row["execution_order"]}</td><td>{_cell(row.get("execution_session_id"))}</td>'
             f'<td>{row["excel_row"]}</td>'
             f'<td>{_cell(row["tsr_id"])}</td><td>{row["selector_value"]}</td>'
-            f'<td>{_cell(row["expected_fault"])}</td><td>{_cell(row["pretest_baseline"])}</td>'
-            f'<td>{_cell(row["injection_readback"])}</td><td>{_cell(row["daq"].get("status"))}</td>'
-            f'<td>{_cell(row["warning_lamp"])}</td>'
+            f'<td>{_cell(row["expected_fault"])}</td>'
             f'<td>{events["A"]["count"]} / {_cell(events["A"].get("first_vector_timestamp"), 6)}</td>'
             f'<td>{events["B"]["count"]} / {_cell(events["B"].get("first_vector_timestamp"), 6)}</td>'
             f'<td>{events["C"]["count"]} / {_cell(events["C"].get("first_vector_timestamp"), 6)}</td>'
-            f'<td>{_cell(timing["A_to_B_ms"], 3)}</td><td>{_cell(timing["B_to_C_ms"], 3)}</td>'
-            f'<td>{_cell(timing["A_to_C_ms"], 3)}</td><td>{_cell(timing["verdict"])}</td>'
+            f'<td>{_cell(timing.get("A_to_B_ms"), 3)}</td><td>{_cell(timing.get("B_to_C_ms"), 3)}</td>'
+            f'<td>{_cell(timing.get("A_to_C_ms"), 3)}</td>'
+            f'<td>{_cell(timing.get("fdti_verdict", "NOT_EVALUATED"))}</td>'
+            f'<td>{_cell(timing.get("fhti_verdict", "NOT_EVALUATED"))}</td>'
+            f'<td>{_cell(row["classification"])}</td>'
+            f'<td>{_cell(row["warning_lamp"])}</td><td>{_support_cell(row, "ibus")}</td>'
+            f'<td>{_support_cell(row, "EcuStatus")}</td>'
+            f'<td>{_cell(row["pretest_baseline"])}</td>'
+            f'<td>{_cell(row["injection_readback"])}</td><td>{_cell(row["daq"].get("status"))}</td>'
             f'<td>{_cell(row["restoration"])}</td><td>{_cell(row["hard_reset_response"])}</td>'
             f'<td>{_cell(row["stabilization_seconds"], 3)}</td>'
             f'<td>{_cell(row["posttest_baseline"])}</td>'
-            f'<td>{_cell(row["classification"])}</td><td>{link}</td></tr>'
+            f'<td>{link}</td></tr>'
         )
     totals = summary["aggregate"]
     page = f'''<!doctype html><html lang="en"><meta charset="utf-8"><title>Recar SENT hardware batch</title>
 <style>body{{font:14px system-ui;margin:28px;color:#234}}table{{border-collapse:collapse;font-size:12px}}td,th{{padding:8px;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}}.summary{{display:flex;gap:24px;flex-wrap:wrap}}</style>
 <h1>Recar SENT hardware batch · 10 ms DAQ</h1><p>{_cell(state)}</p>
 <div class="summary"><b>Requested: {totals["requested"]}</b><span>Executed: {totals["executed"]}</span><span>PASS: {totals["PASS"]}</span><span>PRODUCT_FAIL: {totals["PRODUCT_FAIL"]}</span><span>INCOMPLETE: {totals["INCOMPLETE"]}</span><span>BLOCKED_INFRASTRUCTURE: {totals["BLOCKED_INFRASTRUCTURE"]}</span><span>NOT_RUN: {totals["NOT_RUN"]}</span><span>Recovery failures: {totals["restoration_recovery_failures"]}</span></div>
-<table><tr><th>Order</th><th>Session</th><th>Excel</th><th>TSR</th><th>Value</th><th>Expected fault</th><th>PRETEST</th><th>Injection</th><th>DAQ</th><th>Lamp</th><th>A count/time</th><th>B count/time</th><th>C count/time</th><th>A→B ms</th><th>B→C ms</th><th>A→C ms</th><th>Timing verdict</th><th>Restore</th><th>1101 response</th><th>Stabilize s</th><th>POSTTEST</th><th>Classification</th><th>Evidence</th></tr>{''.join(table_rows)}</table>
-<p>Functional outcome and recovery isolation are reported separately. Pre-injection DAQ quality may be reacquired at most twice using entirely new acquisition processes. Fault injections are never retried automatically.</p></html>'''
+<table><tr><th>Order</th><th>Session</th><th>Excel</th><th>TSR</th><th>Value</th><th>Expected fault</th><th>A count/time</th><th>B count/time</th><th>C count/time</th><th>A→B ms</th><th>B→C ms</th><th>A→C ms</th><th>FDTI verdict</th><th>FHTI verdict</th><th>Final functional result</th><th>Lamp (evidence)</th><th>Ibus / A (evidence)</th><th>EcuStatus (evidence)</th><th>PRETEST</th><th>Injection</th><th>DAQ</th><th>Restore</th><th>1101 response</th><th>Stabilize s</th><th>POSTTEST</th><th>Evidence</th></tr>{''.join(table_rows)}</table>
+<p>FDTI is A→B; FHTI is A→C; B→C is the recorded FRTI interval. Warning Lamp, Ibus, and EcuStatus are supporting evidence only and do not change the functional verdict. Functional outcome and recovery isolation are reported separately. Pre-injection DAQ quality may be reacquired at most twice using entirely new acquisition processes. Fault injections are never retried automatically.</p></html>'''
     (out / "batch_summary.html").write_text(page, encoding="utf-8")
     (out / "summary.html").write_text(page, encoding="utf-8")
     return summary

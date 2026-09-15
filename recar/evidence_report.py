@@ -97,6 +97,27 @@ def pair_frames(frames):
             'interpretation':'USER_CONFIRMED_A_FAULT_B_REPORTED_C_RESPONSE'}
 
 
+def supporting_signal_summary(rows):
+    """Summarize DAQ evidence without using it for product judgment."""
+    if not rows:
+        return {}
+    names = sorted({name for row in rows for name in row.get('signals', {})})
+    summary = {}
+    for name in names:
+        values = [row['signals'][name] for row in rows if name in row.get('signals', {})]
+        if values:
+            summary[name] = {
+                'sample_count': len(values),
+                'first': values[0],
+                'last': values[-1],
+                'minimum': min(values),
+                'maximum': max(values),
+                'unique_values': sorted(set(values)) if name == 'EcuStatus' else None,
+                'role': 'SUPPORTING_EVIDENCE_ONLY',
+            }
+    return summary
+
+
 def chart(rows,anchor,events,result):
     if not rows:
         return '<p>No DAQ data.</p>'
@@ -162,6 +183,19 @@ def build(out,result, report_name='report.html'):
     vector_origin,vector_origin_label=vector_time_origin(result,frames)
     event_frames=[f for f in frames if f['id'] in (0x11A,0x11B,0x11C) and start<=f['monotonic']<=result.get('selector_restored_monotonic',start+3)]
     timing=pair_frames(event_frames)
+    case = result.get('test_case')
+    status = None
+    if case:
+        from recar.batch import evaluate_timing
+        timing_evaluation = evaluate_timing(case, timing)
+        timing.update({
+            'mapping': timing_evaluation['mapping'],
+            'fdti_limit_ms': timing_evaluation['fdti_limit_ms'],
+            'fhti_limit_ms': timing_evaluation['fhti_limit_ms'],
+            'fdti_verdict': timing_evaluation['fdti_verdict'],
+            'fhti_verdict': timing_evaluation['fhti_verdict'],
+            'timing_verdict': timing_evaluation['timing_verdict'],
+        })
     anchor=start
     events=[]
     if timing['pairing']=='UNIQUE_ORDERED_TRIPLET':
@@ -188,10 +222,10 @@ def build(out,result, report_name='report.html'):
     evidence={'window_complete':coverage,'window_sample_count':len(bracket),'max_sample_gap_ms':max(gaps) if gaps else None,
               'daq_interruptions':interruptions,
               'vector_time_origin_epoch_s':vector_origin,'vector_time_origin':vector_origin_label,
-              'anchor':'A frame reception; DAQ host alignment approximate; CAN intervals use Vector timestamps','timing':timing,'event_frames':event_frames}
+              'anchor':'A frame reception; DAQ host alignment approximate; CAN intervals use Vector timestamps','timing':timing,'event_frames':event_frames,
+              'supporting_signals':supporting_signal_summary(bracket)}
     if excluded_frames:
         evidence['excluded_after_restore_frames']=excluded_frames
-    case = result.get('test_case')
     metadata = ''
     title = f'FN-20763 · Fault {result.get("fault_value",1)}'
     if case:
@@ -202,7 +236,7 @@ def build(out,result, report_name='report.html'):
         metadata = (f'<p class="caption">Selection {escape(case.get("selection_id"))} · Excel row {escape(case.get("excel_row"))} · '
                     f'{escape(case.get("expected_fault"))}<br>'
                     f'FHTI limit: {escape(case.get("fhti_ms"))} ms · FDTI limit: {escape(case.get("fdti_ms"))} ms<br>'
-                    f'Execution: {escape(status.get("status"))} · Injection: {escape(result.get("injection","NOT_EXECUTED"))} · '
+                    f'Functional result: {escape(status.get("status"))} · Injection: {escape(result.get("injection","NOT_EXECUTED"))} · '
                     f'Restore: {escape(result.get("selector_restore","NOT_EXECUTED"))} · '
                     f'Recovery: {escape(result.get("recovery","NOT_EXECUTED"))}</p>')
         if result.get('hardware_classification'):
@@ -221,7 +255,34 @@ def build(out,result, report_name='report.html'):
     (out/'evidence.json').write_text(json.dumps(evidence,indent=2),encoding='utf-8')
     labels={0x11A:'A · Fault occurrence',0x11B:'B · Fault reported',0x11C:'C · System response'}
     table=''.join(f'<tr><td>{labels[f["id"]]}{" (excluded: after restore)" if f in excluded_frames else ""}</td><td>{f.get("channel","CAN1")}</td><td>0x{f["id"]:03X}</td><td>{f["timestamp"]-vector_origin:.6f}</td><td>{"Rx" if f["rx"] else "Tx"}</td><td>{f.get("dlc",8)}</td><td>{bytes.fromhex(f["data"]).hex(" ").upper()}</td></tr>' for f in event_frames+excluded_frames)
-    intervals=''.join(f'<span>{label}: <b>{timing[key]:.3f} ms</b></span>' for key,label in (('11B_minus_11A_ms','FDTI (A → B)'),('11C_minus_11B_ms','FRTI (B → C)'),('11C_minus_11A_ms','Total (A → C)')) if key in timing)
+    intervals=''.join(f'<span>{label}: <b>{timing[key]:.3f} ms</b></span>' for key,label in (('11B_minus_11A_ms','FDTI (A → B)'),('11C_minus_11B_ms','FRTI (B → C)'),('11C_minus_11A_ms','FHTI (A → C)')) if key in timing)
+    counts={tag:sum(frame['id']==identifier for frame in event_frames)
+            for tag,identifier in (('A',0x11A),('B',0x11B),('C',0x11C))}
+    def timing_cell(key):
+        return f'{timing[key]:.3f}' if key in timing else 'N/A'
+    functional_table = ''
+    if status:
+        functional_table = (
+            '<h2>Functional judgment</h2><table><tr><th>A</th><th>B</th><th>C</th>'
+            '<th>A→B / ms</th><th>B→C / ms</th><th>A→C / ms</th>'
+            '<th>FDTI verdict</th><th>FHTI verdict</th><th>Final functional result</th></tr><tr>'
+            f'<td>{counts["A"]}</td><td>{counts["B"]}</td><td>{counts["C"]}</td>'
+            f'<td>{timing_cell("11B_minus_11A_ms")}</td>'
+            f'<td>{timing_cell("11C_minus_11B_ms")}</td>'
+            f'<td>{timing_cell("11C_minus_11A_ms")}</td>'
+            f'<td>{escape(status["fdti_verdict"])}</td>'
+            f'<td>{escape(status["fhti_verdict"])}</td>'
+            f'<td>{escape(status["status"])}</td></tr></table>')
+    support=evidence['supporting_signals']
+    ibus=support.get('ibus',{})
+    ecu=support.get('EcuStatus',{})
+    ibus_text = f'{ibus["minimum"]:.3f} … {ibus["maximum"]:.3f}' if ibus else 'N/A'
+    support_table=(
+        '<h2>Supporting evidence</h2><table><tr><th>Warning Lamp</th><th>Ibus / A</th>'
+        '<th>EcuStatus</th><th>Role</th></tr><tr>'
+        f'<td>{escape(result.get("warning_observed"))}</td><td>{ibus_text}</td>'
+        f'<td>{escape(ecu.get("unique_values"))}</td>'
+        '<td>Evidence only; no functional verdict effect</td></tr></table>')
     warning='' if coverage else '<p class="warning">Incomplete ±1 s DAQ coverage.</p>'
     if interruptions:
         warning+=f'<p class="warning">DAQ gaps: {len(interruptions)}; maximum {max(g["gap_ms"] for g in interruptions):.3f} ms. Curves are broken across gaps; no samples filled.</p>'
@@ -233,8 +294,8 @@ def build(out,result, report_name='report.html'):
     fault_value=result.get('fault_value',1)
     document=f'''<!doctype html><html lang="en"><meta charset="utf-8"><title>{html.escape(title)}</title>
 <style>body{{font:15px system-ui;color:#20333d;max-width:1250px;margin:28px auto;padding:0 24px}}h1{{font-size:24px}}h2{{font-size:18px}}svg{{width:100%;background:#f6f9fc}}svg text{{font:13px system-ui}}table{{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}}th,td{{padding:9px 7px;border-bottom:1px solid #dce3e8;text-align:left}}.intervals{{display:flex;gap:36px;margin:20px 0}}.caption{{font-size:12px;color:#647482}}.warning{{color:#ac4920}}</style>
-<h1>{html.escape(title)} <small>— {period} ms DAQ</small></h1>{metadata}{warning}{plot}
+<h1>{html.escape(title)} <small>— {period} ms DAQ</small></h1>{metadata}{warning}{plot}{functional_table}
 <h2>CAN event frames</h2><table><tr><th>Event</th><th>Channel</th><th>ID</th><th>Vector elapsed / s</th><th>Dir</th><th>DLC</th><th>Data</th></tr>{table}</table>
-<div class="intervals">{intervals}</div><p class="caption">Time zero: {html.escape(vector_origin_label)}. CAN FD · FDTI: fault occurrence → fault reported · FRTI: fault reported → system response.<br>DAQ/event alignment uses host reception time; CAN intervals use Vector timestamps. Timing limits not evaluated.</p></html>'''
+<div class="intervals">{intervals}</div>{support_table}<p class="caption">Time zero: {html.escape(vector_origin_label)}. CAN FD · FDTI: A (fault occurrence) → B (fault reported) · FRTI: B → C (system response) · FHTI: A → C.<br>DAQ/event alignment uses host reception time; CAN intervals use Vector timestamps. Limits are evaluated without an added tolerance. Warning Lamp, Ibus, and EcuStatus are supporting evidence only.</p></html>'''
     (out/report_name).write_text(document,encoding='utf-8')
     return evidence

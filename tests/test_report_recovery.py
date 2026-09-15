@@ -20,6 +20,7 @@ def result_for(case, calibration):
         "selector_restored_monotonic": 12.0,
         "vector_connection_epoch_s": 1000.0,
         "daq_period_ms": 10,
+        "daq_sample_count": 221,
         "injection": "READBACK_VERIFIED",
         "selector_restore": "READBACK_VERIFIED",
         "recovery": "BASELINE_VERIFIED",
@@ -57,6 +58,10 @@ class ReportTests(unittest.TestCase):
             html = (out / "report.html").read_text(encoding="utf-8")
         self.assertIn("SENT = 1", html)
         self.assertIn("XCP bytes: original 00", html)
+        self.assertIn("FDTI_PASS", html)
+        self.assertIn("FHTI_PASS", html)
+        self.assertIn("Final functional result", html)
+        self.assertIn("Evidence only; no functional verdict effect", html)
 
     def test_multi_signal_null_metadata_and_ordered_evidence_render(self):
         case = {"selection_id": 1138, "excel_row": 138, "tsr_id": "FN-20999",

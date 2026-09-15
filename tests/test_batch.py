@@ -10,8 +10,11 @@ from recar.batch import (
     MAX_PRETRIGGER_REACQUISITIONS,
     SENT_ALL_ROWS,
     SENT_ALL_VALUES,
+    classify,
+    evaluate_timing,
     execute_case,
     failures,
+    pretrigger_reacquisition_eligible,
     resolve_named_batch,
     result_entry,
     save,
@@ -21,6 +24,8 @@ from recar.daq import EvidenceDaq
 
 def safe_result(functional_status="COMPLETED"):
     warning = functional_status != "INCOMPLETE"
+    incomplete = functional_status == "INCOMPLETE"
+    timing_fail = functional_status == "PRODUCT_FAIL"
     frames = [
         {
             "id": identifier,
@@ -53,23 +58,27 @@ def safe_result(functional_status="COMPLETED"):
         "evidence": {
             "window_complete": True,
             "max_sample_gap_ms": 12.0,
-            "event_frames": frames if warning else [],
+            "event_frames": frames if not incomplete else frames[:2],
             "timing": {
-                "pairing": "UNIQUE_ORDERED_TRIPLET" if warning else "MISSING_EVENTS",
+                "pairing": "UNIQUE_ORDERED_TRIPLET" if not incomplete else "MISSING_EVENTS",
                 **(
                     {
                         "11B_minus_11A_ms": 10.0,
-                        "11C_minus_11B_ms": 10.0,
-                        "11C_minus_11A_ms": 20.0,
+                        "11C_minus_11B_ms": 15.0 if timing_fail else 10.0,
+                        "11C_minus_11A_ms": 25.0 if timing_fail else 20.0,
                     }
-                    if warning
+                    if not incomplete
                     else {}
                 ),
             },
+            "supporting_signals": {
+                "ibus": {"minimum": 0.0, "maximum": 0.1},
+                "EcuStatus": {"unique_values": [9]},
+            },
         },
-        "functional_execution": {
-            "status": functional_status,
-            "timing_verdict": "PASS" if functional_status == "COMPLETED" else "NOT_EVALUATED",
+        "test_case": {
+            "fdti_ms": 16.0,
+            "fhti_ms": 20.0,
         },
         "calibration_evidence": {"restoration": {"verified": True}},
         "recovery_evidence": {
@@ -160,6 +169,55 @@ def run_mock_batch(root, selected, result_factory):
 
 
 class BatchTests(unittest.TestCase):
+    def test_confirmed_timing_mapping_uses_a_b_for_fdti_and_a_c_for_fhti(self):
+        evaluation = evaluate_timing(
+            {"fdti_ms": 16, "fhti_ms": 20},
+            {
+                "pairing": "UNIQUE_ORDERED_TRIPLET",
+                "11B_minus_11A_ms": 15.0,
+                "11C_minus_11B_ms": 5.0,
+                "11C_minus_11A_ms": 20.0,
+            },
+        )
+        self.assertEqual(evaluation["mapping"], {
+            "FDTI": "A_TO_B", "FRTI": "B_TO_C", "FHTI": "A_TO_C"
+        })
+        self.assertEqual(evaluation["fdti_verdict"], "FDTI_PASS")
+        self.assertEqual(evaluation["fhti_verdict"], "FHTI_PASS")
+        self.assertEqual(evaluation["timing_verdict"], "TIMING_PASS")
+
+    def test_no_lamp_with_valid_abc_and_timing_passes(self):
+        result = safe_result()
+        result["warning_observed"] = False
+        self.assertEqual(classify(result)["status"], "PASS")
+        self.assertNotIn("warning", failures(result))
+
+    def test_lamp_present_with_missing_c_is_incomplete(self):
+        result = safe_result("INCOMPLETE")
+        result["warning_observed"] = True
+        self.assertEqual(classify(result)["status"], "INCOMPLETE")
+
+    def test_complete_abc_with_timing_violation_is_product_fail(self):
+        result = safe_result("PRODUCT_FAIL")
+        judgment = classify(result)
+        self.assertEqual(judgment["status"], "PRODUCT_FAIL")
+        self.assertEqual(judgment["fdti_verdict"], "FDTI_PASS")
+        self.assertEqual(judgment["fhti_verdict"], "FHTI_FAIL")
+
+    def test_ibus_and_ecustatus_do_not_change_functional_verdict(self):
+        result = safe_result()
+        baseline = classify(result)
+        result["evidence"]["supporting_signals"]["ibus"] = {
+            "minimum": -999.0, "maximum": 999.0
+        }
+        result["states_observed"] = [-1, 255]
+        result["evidence"]["supporting_signals"]["EcuStatus"] = {
+            "unique_values": [-1, 255]
+        }
+        changed = classify(result)
+        self.assertEqual(changed["status"], baseline["status"])
+        self.assertEqual(changed["timing_verdict"], baseline["timing_verdict"])
+
     def test_sent_all_is_exact_catalog_mapping_and_order(self):
         cases = resolve_named_batch("sent-all")
         self.assertEqual(tuple(case.excel_row for case in cases), SENT_ALL_ROWS)
@@ -261,6 +319,12 @@ class BatchTests(unittest.TestCase):
         stats = daq.pretrigger_stats(now=1.2)
         self.assertEqual(stats["allowed_gap_ms"], 30.0)
         self.assertEqual(stats["status"], "PASSED")
+
+    def test_unsafe_ecustatus_still_blocks_pretest_reacquisition(self):
+        case = resolve_named_batch("sent-all")[0]
+        result = failed_pretrigger_result()
+        result["pretest_baseline_signals"]["motor_state"] = 8
+        self.assertFalse(pretrigger_reacquisition_eligible(case, result))
 
     def test_post_injection_infrastructure_failure_is_never_reacquired(self):
         case = resolve_named_batch("sent-all")[0]
@@ -406,7 +470,7 @@ class BatchTests(unittest.TestCase):
             calls, summary, report = run_mock_batch(
                 Path(tmp), [1], lambda _: safe_result()
             )
-            html = (report / "batch_summary.html").read_text()
+            html = (report / "batch_summary.html").read_text(encoding="utf-8")
             report_files = [path.name for path in report.iterdir()]
         row = summary["rows"][0]
         self.assertEqual(calls, [1])
@@ -418,6 +482,12 @@ class BatchTests(unittest.TestCase):
         self.assertIn("file:///", html)
         self.assertIn("PRETEST", html)
         self.assertIn("POSTTEST", html)
+        self.assertIn("FDTI verdict", html)
+        self.assertIn("FHTI verdict", html)
+        self.assertIn("Final functional result", html)
+        self.assertIn("Lamp (evidence)", html)
+        self.assertIn("Ibus / A (evidence)", html)
+        self.assertIn("EcuStatus (evidence)", html)
 
     def test_hardware_flag_is_required_before_named_batch(self):
         from recar.batch import main
