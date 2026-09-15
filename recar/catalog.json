@@ -2,8 +2,9 @@
   "schema_version": 1,
   "default_selection_id": 1,
   "source_workbook": "C:/recar/REF/北美recar-TSR测试.xlsx",
+  "source_workbook_baseline": "2026-09-15 latest workbook; Fault injection method N/A - Removed is trace-only and non-executable.",
   "source_sheet": "工作表1",
-  "source_sha256": "7cabf4b3fb55255c23ced97189a764720c970bd52e8430801d69a67e7cabad4b",
+  "source_sha256": "F8AFB9CA2930C2CE8CA79AF329E66BA12A05E8322705410A0B16063F3C4BE07D",
   "cases": [
     {
       "family": "SENT",
@@ -4167,11 +4168,11 @@
         "enabled": "H226"
       },
       "implementation_status": "IMPLEMENTED",
-      "offline_validation_status": "OFFLINE_VERIFIED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "Catalog data only. Restoring parameters is not DTC clearing.",
+      "notes": "Catalog data only. Current A2L exact-symbol verification is required for both updated source writes; restoring parameters is not DTC clearing.",
       "writes": [
         {
           "signal": "Motor_Over_Current_Phase_Test",
@@ -4182,14 +4183,9 @@
           "signal": "Motor_CurrentPhase_test",
           "value": 241,
           "order": 2
-        },
-        {
-          "signal": "Mspd_test",
-          "value": 999,
-          "order": 3
         }
       ],
-      "source_step": "注入Motor_Over_Current_Phase_Test=1，Motor_CurrentPhase_test=241，Mspd_test=999"
+      "source_step": "注入Motor_Over_Current_Phase_Test=1，Motor_CurrentPhase_test=241"
     },
     {
       "family": "SPECIAL_SEQUENCE",
@@ -4763,21 +4759,12 @@
         "enabled": "H218"
       },
       "implementation_status": "IMPLEMENTED",
-      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "offline_validation_status": "OFFLINE_VERIFIED",
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
       "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
       "writes": [
-        {
-          "signal": "AimTorqueCheckThreshold",
-          "value": 10,
-          "physical_value": 10,
-          "raw_value": null,
-          "source_expression": "=10",
-          "unit": "MotorTorq",
-          "order": 1
-        },
         {
           "signal": "BasicTorque_Switch",
           "value": 1,
@@ -4785,7 +4772,7 @@
           "raw_value": null,
           "source_expression": "=1",
           "unit": "",
-          "order": 2
+          "order": 1
         },
         {
           "signal": "BasicTorque_Offset",
@@ -4794,10 +4781,10 @@
           "raw_value": null,
           "source_expression": "=-6.9",
           "unit": "MotorTorq",
-          "order": 3
+          "order": 2
         }
       ],
-      "source_step": "AimTorqueCheckThreshold(gian_1024_3_MotorTorq) = 10，避免报出compare故障\n注入BasicTorque_Switch=1，BasicTorque_Offset(gian_1024_3_MotorTorq)=-6.9",
+      "source_step": "注入BasicTorque_Switch=1，BasicTorque_Offset(gian_1024_3_MotorTorq)=-6.9",
       "variant_id": "DEFAULT",
       "aggregate_row_status": "NOT_APPLICABLE"
     },
@@ -4819,21 +4806,12 @@
         "enabled": "H219"
       },
       "implementation_status": "IMPLEMENTED",
-      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "offline_validation_status": "OFFLINE_VERIFIED",
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
       "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
       "writes": [
-        {
-          "signal": "AimTorqueCheckThreshold",
-          "value": 10,
-          "physical_value": 10,
-          "raw_value": null,
-          "source_expression": "=10",
-          "unit": "MotorTorq",
-          "order": 1
-        },
         {
           "signal": "BasicTorque_Switch",
           "value": 1,
@@ -4841,7 +4819,7 @@
           "raw_value": null,
           "source_expression": "=1",
           "unit": "",
-          "order": 2
+          "order": 1
         },
         {
           "signal": "BasicTorque_Offset",
@@ -4850,10 +4828,10 @@
           "raw_value": null,
           "source_expression": "=6.9",
           "unit": "MotorTorq",
-          "order": 3
+          "order": 2
         }
       ],
-      "source_step": "AimTorqueCheckThreshold(gian_1024_3_MotorTorq) = 10，避免报出compare故障\n注入BasicTorque_Switch=1，BasicTorque_Offset(gian_1024_3_MotorTorq)=6.9",
+      "source_step": "注入BasicTorque_Switch=1，BasicTorque_Offset(gian_1024_3_MotorTorq)=6.9",
       "variant_id": "DEFAULT",
       "aggregate_row_status": "NOT_APPLICABLE"
     },

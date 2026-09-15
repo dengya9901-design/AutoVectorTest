@@ -1,0 +1,51 @@
+{
+  "source_workbook": "C:/recar/REF/北美recar-TSR测试.xlsx",
+  "source_sheet": "工作表1",
+  "source_sha256": "F8AFB9CA2930C2CE8CA79AF329E66BA12A05E8322705410A0B16063F3C4BE07D",
+  "row_identity_policy": "Excel row identities are immutable. Removed rows remain traceable and never shift later test cases.",
+  "selection_policy": "The historical H column is not an execution input. Catalog family support, a valid source definition, A2L readiness, and removal status govern executable scope.",
+  "removed_or_obsolete": [
+    {
+      "excel_row": 216,
+      "fault_injection_method": "N/A - Removed",
+      "expected_fault": "MOTOR_ACTUAL_TORQUE_FAILURE",
+      "execution_status": "REMOVED_OR_OBSOLETE"
+    },
+    {
+      "excel_row": 223,
+      "fault_injection_method": "N/A - Removed",
+      "expected_fault": "MOTOR_ACTUAL_TORQUE_FAILURE",
+      "execution_status": "REMOVED_OR_OBSOLETE"
+    }
+  ],
+  "catalog_updates": [
+    {
+      "excel_row": 218,
+      "classification": "CATALOG_UPDATE_REQUIRED",
+      "writes": [["BasicTorque_Switch", 1], ["BasicTorque_Offset", -6.9]],
+      "removed_writes": ["AimTorqueCheckThreshold"],
+      "a2l_readiness": "A2L_READY",
+      "a2l_symbols": ["BasicTorque_Switch", "BasicTorque_Offset"]
+    },
+    {
+      "excel_row": 219,
+      "classification": "CATALOG_UPDATE_REQUIRED",
+      "writes": [["BasicTorque_Switch", 1], ["BasicTorque_Offset", 6.9]],
+      "removed_writes": ["AimTorqueCheckThreshold"],
+      "a2l_readiness": "A2L_READY",
+      "a2l_symbols": ["BasicTorque_Switch", "BasicTorque_Offset"]
+    },
+    {
+      "excel_row": 226,
+      "classification": "CATALOG_UPDATE_REQUIRED",
+      "writes": [["Motor_Over_Current_Phase_Test", 1], ["Motor_CurrentPhase_test", 241]],
+      "removed_writes": ["Mspd_test"],
+      "a2l_readiness": "A2L_SYMBOL_MISSING",
+      "missing_a2l_symbols": ["Motor_Over_Current_Phase_Test", "Motor_CurrentPhase_test"]
+    }
+  ],
+  "existing_hardware_evidence": {
+    "mcu_batch": {"requested": 30, "executed": 30, "pass": 29, "incomplete": 1},
+    "row_98": {"selector_value": 62, "expected_fault": "MCU_GTM_MODULE_FAILURE", "classification": "INCOMPLETE"}
+  }
+}

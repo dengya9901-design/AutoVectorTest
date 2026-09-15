@@ -4711,20 +4711,14 @@
           "unit": "",
           "source_expression": ""
         },
-        {
-          "signal": "Mspd_test",
-          "physical_value": 999,
-          "unit": "",
-          "source_expression": ""
-        }
       ],
       "fhti_ms": 54,
       "fdti_ms": 50,
-      "a2l_validation_status": "OFFLINE_VERIFIED",
+      "a2l_validation_status": "A2L_SYMBOL_MISSING",
       "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "previous_hardware_execution_status": "NOT_RUN",
       "recommended_stage": 4,
-      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
+      "batch_eligibility": "BLOCKED_A2L_SYMBOL_MISSING",
       "aggregate_row_status": "NOT_APPLICABLE",
       "stop_conditions": [
         "xcp_write_or_readback_failure",
@@ -5200,12 +5194,6 @@
       "fault_family": "ID_HAND_TORQUE_LOWER_LIMIT_FAILURE",
       "writes": [
         {
-          "signal": "AimTorqueCheckThreshold",
-          "physical_value": 10,
-          "unit": "MotorTorq",
-          "source_expression": "=10"
-        },
-        {
           "signal": "BasicTorque_Switch",
           "physical_value": 1,
           "unit": "",
@@ -5220,11 +5208,11 @@
       ],
       "fhti_ms": 204,
       "fdti_ms": 200,
-      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "a2l_validation_status": "A2L_READY",
       "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "previous_hardware_execution_status": "NOT_RUN",
       "recommended_stage": 4,
-      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
       "aggregate_row_status": "NOT_APPLICABLE",
       "stop_conditions": [
         "xcp_write_or_readback_failure",
@@ -5244,12 +5232,6 @@
       "fault_family": "ID_HAND_TORQUE_UPPER_LIMIT_FAILURE",
       "writes": [
         {
-          "signal": "AimTorqueCheckThreshold",
-          "physical_value": 10,
-          "unit": "MotorTorq",
-          "source_expression": "=10"
-        },
-        {
           "signal": "BasicTorque_Switch",
           "physical_value": 1,
           "unit": "",
@@ -5264,11 +5246,11 @@
       ],
       "fhti_ms": 204,
       "fdti_ms": 200,
-      "a2l_validation_status": "A2L_VALIDATION_REQUIRED",
+      "a2l_validation_status": "A2L_READY",
       "previous_hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "previous_hardware_execution_status": "NOT_RUN",
       "recommended_stage": 4,
-      "batch_eligibility": "BLOCKED_A2L_CONVERSION_VALIDATION_REQUIRED",
+      "batch_eligibility": "REQUIRES_FAMILY_REPRESENTATIVE_HARDWARE_VALIDATED",
       "aggregate_row_status": "NOT_APPLICABLE",
       "stop_conditions": [
         "xcp_write_or_readback_failure",

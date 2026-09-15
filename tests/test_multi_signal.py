@@ -66,7 +66,7 @@ class MultiSignalTests(unittest.TestCase):
         result = json.loads((report / 'result.json').read_text(encoding='utf-8'))
         self.assertEqual(result['hardware_execution'], 'NOT_RUN')
         self.assertEqual(result['hardware_validation'], 'HARDWARE_VALIDATION_PENDING')
-        self.assertEqual(len(result['test_case']['writes']), 3)
+        self.assertEqual(len(result['test_case']['writes']), 2)
         self.assertIn('Hardware validation: PENDING', (report / 'report.html').read_text(encoding='utf-8'))
 
     def test_missing_or_duplicate_writes_are_rejected(self):
@@ -123,4 +123,6 @@ class MultiSignalTests(unittest.TestCase):
         self.assertEqual([(c.variant_id,c.writes[-1].physical_value) for c in row137],[('HIGH',5.6),('LOW',4.4)])
         self.assertTrue(all(c.aggregate_row_status=='HARDWARE_VALIDATION_PENDING_ALL_VARIANTS' for c in row4+row137))
         self.assertEqual(select_case(2005,'PARAMETER_OFFSET').writes[-1].physical_value,0.7)
-        self.assertTrue(all(c.offline_validation_status=='A2L_VALIDATION_REQUIRED' for c in cases))
+        self.assertEqual({case.excel_row for case in cases if case.offline_validation_status == 'OFFLINE_VERIFIED'}, {218, 219})
+        self.assertTrue(all(case.offline_validation_status == 'A2L_VALIDATION_REQUIRED'
+                            for case in cases if case.excel_row not in {218, 219}))
