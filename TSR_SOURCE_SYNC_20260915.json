@@ -50,6 +50,17 @@
       "missing_a2l_symbols": ["Motor_Over_Current_Phase_Test", "Motor_CurrentPhase_test"]
     }
   ],
+  "rows_194_to_209_patch_classifications": [
+    {"excel_row": 194, "execution_status": "MANUAL_VOLTAGE_SEQUENCE_REQUIRED"},
+    {"excel_row": 196, "execution_status": "MANUAL_VOLTAGE_SEQUENCE_REQUIRED"},
+    {"excel_row": 198, "execution_status": "STRATEGY_DISABLED"},
+    {"excel_rows": "200-209", "execution_status": "ENGINEERING_EXCLUDED"}
+  ],
+  "rows_195_197_199_a2l_preflight": [
+    {"excel_row": 195, "a2l_status": "A2L_SYMBOL_MISSING", "symbol": "CRC_Diag_Test"},
+    {"excel_row": 197, "a2l_status": "A2L_READY", "symbols": ["curr_switch", "IA_Curr_Offset"]},
+    {"excel_row": 199, "a2l_status": "A2L_SYMBOL_MISSING", "symbol": "Vbus_Fault_Test"}
+  ],
   "existing_hardware_evidence": {
     "mcu_batch": {"requested": 30, "executed": 30, "pass": 29, "incomplete": 1},
     "row_98": {"selector_value": 62, "expected_fault": "MCU_GTM_MODULE_FAILURE", "classification": "INCOMPLETE"}

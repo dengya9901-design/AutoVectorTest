@@ -3,7 +3,7 @@ import argparse
 
 from recar.catalog import choices, select_case
 
-FAMILY_MENU = ('SENT', 'MCU', 'MCU_OS', 'MAGCHIP', 'MULTI_SIGNAL_FIXED', 'SPECIAL_SEQUENCE', 'PARAMETER_OFFSET')
+FAMILY_MENU = ('SENT', 'MCU', 'MCU_OS', 'MAGCHIP', 'SINGLE_SIGNAL', 'MULTI_SIGNAL_FIXED', 'SPECIAL_SEQUENCE', 'PARAMETER_OFFSET')
 
 
 def print_cases(family):

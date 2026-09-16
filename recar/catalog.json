@@ -7,6 +7,56 @@
   "source_sha256": "F8AFB9CA2930C2CE8CA79AF329E66BA12A05E8322705410A0B16063F3C4BE07D",
   "cases": [
     {
+      "family": "SINGLE_SIGNAL",
+      "selection_id": 195,
+      "excel_row": 195,
+      "tsr_id": "FN-21000",
+      "injection_signal": "CRC_Diag_Test",
+      "injection_value": 1,
+      "expected_fault": "CALIBRATION_DATA_CHECKSUM_FAILURE",
+      "fhti_ms": 20,
+      "fdti_ms": 16,
+      "enabled": true,
+      "description": "Single-signal software injection",
+      "source_cells": {
+        "injection": "G195",
+        "expected_fault": "E195",
+        "fhti_ms": "C195",
+        "fdti_ms": "D195"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "A2L_SYMBOL_MISSING: CRC_Diag_Test is absent from the current XCP_SAM.a2l. XCP value restoration is not DTC clearing."
+    },
+    {
+      "family": "SINGLE_SIGNAL",
+      "selection_id": 199,
+      "excel_row": 199,
+      "tsr_id": "FN-21000",
+      "injection_signal": "Vbus_Fault_Test",
+      "injection_value": 1,
+      "expected_fault": "VBUS_DROP_DOWN_FAILURE",
+      "fhti_ms": 1004,
+      "fdti_ms": 1000,
+      "enabled": true,
+      "description": "Single-signal software injection",
+      "source_cells": {
+        "injection": "G199",
+        "expected_fault": "E199",
+        "fhti_ms": "C199",
+        "fdti_ms": "D199"
+      },
+      "implementation_status": "IMPLEMENTED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
+      "hardware_execution_status": "NOT_RUN",
+      "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
+      "notes": "A2L_SYMBOL_MISSING: Vbus_Fault_Test is absent from the current XCP_SAM.a2l. XCP value restoration is not DTC clearing."
+    },
+    {
       "family": "SENT",
       "selection_id": 1,
       "excel_row": 7,

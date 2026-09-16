@@ -12,9 +12,9 @@ from recar.offline import run as dry_run
 
 class CatalogTests(unittest.TestCase):
     def test_family_counts_and_required_mapping(self):
-        self.assertEqual(families(), ('MAGCHIP', 'MCU', 'MCU_OS', 'MULTI_SIGNAL_FIXED', 'PARAMETER_OFFSET', 'SENT', 'SPECIAL_SEQUENCE'))
+        self.assertEqual(families(), ('MAGCHIP', 'MCU', 'MCU_OS', 'MULTI_SIGNAL_FIXED', 'PARAMETER_OFFSET', 'SENT', 'SINGLE_SIGNAL', 'SPECIAL_SEQUENCE'))
         self.assertEqual({family: len(choices(family)) for family in families()},
-                         {'SENT': 16, 'MCU': 62, 'MCU_OS': 38, 'MAGCHIP': 11, 'MULTI_SIGNAL_FIXED': 44, 'SPECIAL_SEQUENCE': 1, 'PARAMETER_OFFSET': 15})
+                         {'SENT': 16, 'MCU': 62, 'MCU_OS': 38, 'MAGCHIP': 11, 'SINGLE_SIGNAL': 2, 'MULTI_SIGNAL_FIXED': 44, 'SPECIAL_SEQUENCE': 1, 'PARAMETER_OFFSET': 15})
         sent = select_case(1, 'SENT')
         mcu = select_case(37, 'MCU')
         os_case = select_case(99, 'MCU_OS')
@@ -38,6 +38,25 @@ class CatalogTests(unittest.TestCase):
         self.assertFalse({case.excel_row for case in cases} & set(range(239, 248)))
         self.assertTrue(all((case.injection_signal, case.fdti_ms, case.fhti_ms) ==
                             ('FAULT_INJECT.Magchip_Fault_Test', 16, 20) for case in cases))
+
+    def test_rows_195_197_and_199_patch_mappings(self):
+        checksum = select_case(195, 'SINGLE_SIGNAL')
+        current = select_case(2197, 'PARAMETER_OFFSET')
+        vbus = select_case(199, 'SINGLE_SIGNAL')
+        self.assertEqual((checksum.injection_signal, checksum.injection_value,
+                          checksum.fdti_ms, checksum.fhti_ms),
+                         ('CRC_Diag_Test', 1, 16, 20))
+        self.assertEqual([(write.signal, write.value, write.order) for write in current.writes],
+                         [('curr_switch', 1, 1), ('IA_Curr_Offset', 31, 2)])
+        self.assertEqual((current.fdti_ms, current.fhti_ms), (50, 54))
+        self.assertEqual((vbus.injection_signal, vbus.injection_value,
+                          vbus.fdti_ms, vbus.fhti_ms),
+                         ('Vbus_Fault_Test', 1, 1000, 1004))
+        self.assertEqual(checksum.offline_validation_status, 'A2L_VALIDATION_REQUIRED')
+        self.assertEqual(vbus.offline_validation_status, 'A2L_VALIDATION_REQUIRED')
+        selected_rows = {case.excel_row for case in choices()}
+        self.assertFalse(selected_rows & {194, 196, 198})
+        self.assertFalse(selected_rows & set(range(200, 210)))
 
     def test_every_case_is_implemented_offline_verified_and_pending_or_tested(self):
         for case in choices():
