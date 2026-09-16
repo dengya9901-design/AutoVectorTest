@@ -127,7 +127,8 @@ class MultiSignalTests(unittest.TestCase):
                 case = select_case(2200 + row - 200, 'PARAMETER_OFFSET')
                 self.assertEqual([(write.signal, write.value) for write in case.writes], writes)
                 self.assertEqual((case.fdti_ms, case.fhti_ms), (200, 204))
-                self.assertEqual(case.offline_validation_status, 'A2L_VALIDATION_REQUIRED')
+                self.assertEqual(case.offline_validation_status, 'OFFLINE_VERIFIED')
+                self.assertIn('A2L_READY', case.notes)
 
     def test_parameter_offset_variants_and_physical_values(self):
         cases=choices('PARAMETER_OFFSET')
@@ -137,6 +138,7 @@ class MultiSignalTests(unittest.TestCase):
         self.assertEqual([(c.variant_id,c.writes[-1].physical_value) for c in row137],[('HIGH',5.6),('LOW',4.4)])
         self.assertTrue(all(c.aggregate_row_status=='HARDWARE_VALIDATION_PENDING_ALL_VARIANTS' for c in row4+row137))
         self.assertEqual(select_case(2005,'PARAMETER_OFFSET').writes[-1].physical_value,0.7)
-        self.assertEqual({case.excel_row for case in cases if case.offline_validation_status == 'OFFLINE_VERIFIED'}, {218, 219})
+        self.assertEqual({case.excel_row for case in cases if case.offline_validation_status == 'OFFLINE_VERIFIED'},
+                         {211, 212, 213, 214, 218, 219})
         self.assertTrue(all(case.offline_validation_status == 'A2L_VALIDATION_REQUIRED'
-                            for case in cases if case.excel_row not in {218, 219}))
+                            for case in cases if case.excel_row not in {211, 212, 213, 214, 218, 219}))
