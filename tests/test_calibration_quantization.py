@@ -48,6 +48,15 @@ def float32_parameter():
     )
 
 
+def gain819_parameter():
+    return CalibrationParameter(
+        name="Gain819_Test", symbol_link="Gain819_Test", role="test", side="",
+        address=0x1008, address_ext=0, data_type="UWORD", byte_order="MSB_LAST",
+        conversion_name="gain_819", conversion_type="LINEAR", phys_gain=1 / 819,
+        phys_offset=0.0, phys_unit="V", phys_min=0.0, phys_max=80.0, source_file="test",
+    )
+
+
 class CalibrationQuantizationTests(unittest.TestCase):
     def test_gain128_readback_is_verified_by_encoded_raw_value(self):
         client = XcpCalibrationClient(FakeXcp())
@@ -98,6 +107,15 @@ class CalibrationQuantizationTests(unittest.TestCase):
         self.assertEqual(expected.data, actual.data)
         self.assertNotEqual(expected.raw_value, actual.raw_value)
         self.assertTrue(verified)
+
+    def test_gain819_temperature_variants_use_encoded_raw_readback(self):
+        for requested, expected_raw in ((4.96, 4062), (0.03, 25)):
+            with self.subTest(requested=requested):
+                expected, actual, verified = XcpCalibrationClient(FakeXcp()).write_and_verify(
+                    gain819_parameter(), requested, tolerance=0
+                )
+                self.assertEqual((expected.raw_value, actual.raw_value), (expected_raw, expected_raw))
+                self.assertTrue(verified)
 
 
 if __name__ == "__main__":

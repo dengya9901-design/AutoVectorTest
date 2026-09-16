@@ -155,7 +155,9 @@ class MultiSignalTests(unittest.TestCase):
         self.assertEqual([(c.variant_id,c.writes[-1].physical_value) for c in row137],[('HIGH',5.6),('LOW',4.4)])
         self.assertTrue(all(c.aggregate_row_status=='HARDWARE_VALIDATION_PENDING_ALL_VARIANTS' for c in row4+row137))
         self.assertEqual(select_case(2005,'PARAMETER_OFFSET').writes[-1].physical_value,0.7)
+        self.assertEqual([(write.signal, write.value) for write in select_case(2003, 'PARAMETER_OFFSET').writes],
+                         [('Temp_Test', 1), ('Temp_Inject_Test', 126)])
         self.assertEqual({case.excel_row for case in cases if case.offline_validation_status == 'OFFLINE_VERIFIED'},
-                         {211, 212, 213, 214, 218, 219, 220, 221})
+                         {3, 4, 5, 211, 212, 213, 214, 218, 219, 220, 221})
         self.assertTrue(all(case.offline_validation_status == 'A2L_VALIDATION_REQUIRED'
-                            for case in cases if case.excel_row not in {211, 212, 213, 214, 218, 219, 220, 221}))
+                            for case in cases if case.excel_row not in {3, 4, 5, 211, 212, 213, 214, 218, 219, 220, 221}))
