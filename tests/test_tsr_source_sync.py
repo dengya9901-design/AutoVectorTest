@@ -60,4 +60,4 @@ class LatestTsrSourceSyncTests(unittest.TestCase):
     def test_explicit_batch_scope_does_not_depend_on_h_column(self):
         self.assertIn('not an execution input', self.sync['selection_policy'])
         self.assertEqual([case.injection_value for case in resolve_named_batch('sent-all')], list(range(1, 17)))
-        self.assertEqual(len(choices()), 186)
+        self.assertEqual(len(choices()), 187)

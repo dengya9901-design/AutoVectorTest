@@ -14,7 +14,7 @@ class CatalogTests(unittest.TestCase):
     def test_family_counts_and_required_mapping(self):
         self.assertEqual(families(), ('MAGCHIP', 'MCU', 'MCU_OS', 'MULTI_SIGNAL_FIXED', 'PARAMETER_OFFSET', 'SENT', 'SPECIAL_SEQUENCE'))
         self.assertEqual({family: len(choices(family)) for family in families()},
-                         {'SENT': 16, 'MCU': 62, 'MCU_OS': 38, 'MAGCHIP': 10, 'MULTI_SIGNAL_FIXED': 44, 'SPECIAL_SEQUENCE': 1, 'PARAMETER_OFFSET': 15})
+                         {'SENT': 16, 'MCU': 62, 'MCU_OS': 38, 'MAGCHIP': 11, 'MULTI_SIGNAL_FIXED': 44, 'SPECIAL_SEQUENCE': 1, 'PARAMETER_OFFSET': 15})
         sent = select_case(1, 'SENT')
         mcu = select_case(37, 'MCU')
         os_case = select_case(99, 'MCU_OS')
@@ -30,6 +30,14 @@ class CatalogTests(unittest.TestCase):
                          ('FAULT_INJECT.MCU_OS_Test', 1))
         self.assertEqual((magchip.injection_signal, magchip.injection_value),
                          ('FAULT_INJECT.Magchip_Fault_Test', 1))
+
+    def test_magchip_patch_is_rows_228_to_238_with_complete_selector_mapping(self):
+        cases = choices('MAGCHIP')
+        self.assertEqual([(case.excel_row, case.injection_value) for case in cases],
+                         [(row, row - 227) for row in range(228, 239)])
+        self.assertFalse({case.excel_row for case in cases} & set(range(239, 248)))
+        self.assertTrue(all((case.injection_signal, case.fdti_ms, case.fhti_ms) ==
+                            ('FAULT_INJECT.Magchip_Fault_Test', 16, 20) for case in cases))
 
     def test_every_case_is_implemented_offline_verified_and_pending_or_tested(self):
         for case in choices():
