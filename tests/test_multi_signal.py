@@ -115,6 +115,20 @@ class MultiSignalTests(unittest.TestCase):
                          [('PDC_Fault_Pemt_Test', 1, 1), ('PDC_Fault_Pemt_Test', 3, 2)])
         self.assertIn('>x executes as x+1', case.notes)
 
+    def test_rows_211_to_214_preserve_gain128_source_values_and_limits(self):
+        expected = {
+            211: [('Torque_AR_Fault_Test', 1), ('Aligning_Torque_Test', 11.1)],
+            212: [('Torque_Damping_Fault_Test', 1), ('Damping_Torque_Test', 10)],
+            213: [('Torque_FR_Fault_Test', 1), ('Friction_Torque_Value', 1.5)],
+            214: [('PDC_Fault_Test', 1), ('PDC_Angle_Value_Test', 3)],
+        }
+        for row, writes in expected.items():
+            with self.subTest(row=row):
+                case = select_case(2200 + row - 200, 'PARAMETER_OFFSET')
+                self.assertEqual([(write.signal, write.value) for write in case.writes], writes)
+                self.assertEqual((case.fdti_ms, case.fhti_ms), (200, 204))
+                self.assertEqual(case.offline_validation_status, 'A2L_VALIDATION_REQUIRED')
+
     def test_parameter_offset_variants_and_physical_values(self):
         cases=choices('PARAMETER_OFFSET')
         self.assertEqual(len(cases),15)

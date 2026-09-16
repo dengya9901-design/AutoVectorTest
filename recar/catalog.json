@@ -4709,7 +4709,7 @@
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "notes": "A2L_CONVERSION_UNRESOLVED: TSR requires gain128_MotorToq but current A2L reports NO_COMPU_METHOD (1:1). Do not execute until engineering confirms conversion. Confirmed >x executes as x+1.",
       "writes": [
         {
           "signal": "Torque_AR_Fault_Test",
@@ -4756,7 +4756,7 @@
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "notes": "A2L_CONVERSION_UNRESOLVED: TSR requires gain128_MotorToq but current A2L reports NO_COMPU_METHOD (1:1). Do not execute until engineering confirms conversion. Confirmed >x executes as x+1.",
       "writes": [
         {
           "signal": "Torque_Damping_Fault_Test",
@@ -4803,7 +4803,7 @@
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "notes": "A2L_CONVERSION_UNRESOLVED: TSR requires gain128_MotorToq but current A2L reports NO_COMPU_METHOD (1:1). Do not execute until engineering confirms conversion. Confirmed >x executes as x+1.",
       "writes": [
         {
           "signal": "Torque_FR_Fault_Test",
@@ -4850,7 +4850,7 @@
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "notes": "A2L_CONVERSION_UNRESOLVED: TSR requires gain128 but current A2L reports NO_COMPU_METHOD (1:1). Do not execute until engineering confirms conversion. Confirmed >x executes as x+1.",
       "writes": [
         {
           "signal": "PDC_Fault_Test",
