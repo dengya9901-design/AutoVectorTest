@@ -29,6 +29,16 @@ def gain128_parameter():
     )
 
 
+def gain1024_parameter():
+    return CalibrationParameter(
+        name="Gain1024_Test", symbol_link="Gain1024_Test", role="test", side="",
+        address=0x1002, address_ext=0, data_type="SWORD", byte_order="MSB_LAST",
+        conversion_name="gain1024_4", conversion_type="LINEAR", phys_gain=1 / 1024,
+        phys_offset=0.0, phys_unit="MotorTorq", phys_min=-32.0, phys_max=32.0,
+        source_file="test",
+    )
+
+
 class CalibrationQuantizationTests(unittest.TestCase):
     def test_gain128_readback_is_verified_by_encoded_raw_value(self):
         client = XcpCalibrationClient(FakeXcp())
@@ -61,6 +71,16 @@ class CalibrationQuantizationTests(unittest.TestCase):
         xcp.download = altered_download
         _, _, verified = client.write_and_verify(gain128_parameter(), 3.0, tolerance=0)
         self.assertFalse(verified)
+
+    def test_gain1024_offsets_use_encoded_raw_readback(self):
+        for requested, expected_raw in ((-6.9, -7066), (6.9, 7066)):
+            with self.subTest(requested=requested):
+                expected, actual, verified = XcpCalibrationClient(FakeXcp()).write_and_verify(
+                    gain1024_parameter(), requested, tolerance=0
+                )
+                self.assertEqual((expected.raw_value, actual.raw_value), (expected_raw, expected_raw))
+                self.assertEqual(actual.physical_value, expected_raw / 1024)
+                self.assertTrue(verified)
 
 
 if __name__ == "__main__":
