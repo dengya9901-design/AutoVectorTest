@@ -4568,7 +4568,7 @@
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "notes": "A2L_CONVERSION_UNRESOLVED: current XCP_SAM.a2l resolves Power_Source5V_Test uniquely and writable but defines NO_COMPU_METHOD; engineering voltage conversion is required before physical writes.",
       "writes": [
         {
           "signal": "Sensor_5V_Test",
@@ -4615,7 +4615,7 @@
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "Physical values only; raw ECU conversion requires A2L validation. Confirmed >x executes as x+1.",
+      "notes": "A2L_CONVERSION_UNRESOLVED: current XCP_SAM.a2l resolves Power_Source5V_Test uniquely and writable but defines NO_COMPU_METHOD; engineering voltage conversion is required before physical writes.",
       "writes": [
         {
           "signal": "Sensor_5V_Test",
