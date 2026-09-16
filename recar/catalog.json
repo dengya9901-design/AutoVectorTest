@@ -4213,11 +4213,11 @@
         "enabled": "H224"
       },
       "implementation_status": "IMPLEMENTED",
-      "offline_validation_status": "OFFLINE_VERIFIED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "Catalog data only. Restoring parameters is not DTC clearing.",
+      "notes": "A2L_SYMBOL_MISSING: current XCP_SAM.a2l contains none of the exact Row 224 symbols. Do not substitute similarly named symbols. Restoring parameters is not DTC clearing.",
       "writes": [
         {
           "signal": "Motor_Over_Current_Bus_Test",
@@ -4255,11 +4255,11 @@
         "enabled": "H225"
       },
       "implementation_status": "IMPLEMENTED",
-      "offline_validation_status": "OFFLINE_VERIFIED",
+      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "Catalog data only. Restoring parameters is not DTC clearing.",
+      "notes": "A2L_SYMBOL_MISSING: current XCP_SAM.a2l contains none of the exact Row 225 symbols. Do not substitute similarly named symbols. Restoring parameters is not DTC clearing.",
       "writes": [
         {
           "signal": "Motor_Connect_Test",
@@ -4306,7 +4306,7 @@
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "Catalog data only. Current A2L exact-symbol verification is required for both updated source writes; restoring parameters is not DTC clearing.",
+      "notes": "A2L_SYMBOL_MISSING: current XCP_SAM.a2l contains none of the exact Row 226 symbols. Mspd_test=999 is absent from the latest TSR definition and is not a catalog write. Restoring parameters is not DTC clearing.",
       "writes": [
         {
           "signal": "Motor_Over_Current_Phase_Test",

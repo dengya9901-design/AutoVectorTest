@@ -45,6 +45,23 @@ class MultiSignalTests(unittest.TestCase):
             case = select_case(selection, 'MULTI_SIGNAL_FIXED')
             self.assertEqual([(write.signal, write.value) for write in case.writes], writes)
 
+    def test_motor_patch_definitions_preserve_order_limits_and_remove_legacy_write(self):
+        expected = {
+            1224: ([('Motor_Over_Current_Bus_Test', 1), ('Motor_CurrentBus_test', 121),
+                    ('Motor_Speed_test', 99)], (50, 54)),
+            1225: ([('Motor_Connect_Test', 1), ('mspd_test', 299), ('lq_test', 4.9),
+                    ('Vq_test', 16.1)], (200, 204)),
+            1226: ([('Motor_Over_Current_Phase_Test', 1), ('Motor_CurrentPhase_test', 241)], (50, 54)),
+        }
+        for selection, (writes, limits) in expected.items():
+            with self.subTest(selection=selection):
+                case = select_case(selection, 'MULTI_SIGNAL_FIXED')
+                self.assertEqual([(write.signal, write.value) for write in case.writes], writes)
+                self.assertEqual((case.fdti_ms, case.fhti_ms), limits)
+                self.assertEqual(case.offline_validation_status, 'A2L_VALIDATION_REQUIRED')
+        row_226 = select_case(1226, 'MULTI_SIGNAL_FIXED')
+        self.assertNotIn('Mspd_test', [write.signal for write in row_226.writes])
+
     def test_order_capture_readback_and_reverse_restore(self):
         case, client, parameters = self.runner(1224, originals={'Motor_Over_Current_Bus_Test': 4, 'Motor_CurrentBus_test': 5, 'Motor_Speed_test': 6})
         evidence = {}
