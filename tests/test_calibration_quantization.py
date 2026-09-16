@@ -39,6 +39,15 @@ def gain1024_parameter():
     )
 
 
+def float32_parameter():
+    return CalibrationParameter(
+        name="Float32_Test", symbol_link="Float32_Test", role="test", side="",
+        address=0x1004, address_ext=0, data_type="FLOAT32_IEEE", byte_order="MSB_LAST",
+        conversion_name="NO_COMPU_METHOD", conversion_type="NO_COMPU_METHOD", phys_gain=1.0,
+        phys_offset=0.0, phys_unit="", phys_min=-1000.0, phys_max=1000.0, source_file="test",
+    )
+
+
 class CalibrationQuantizationTests(unittest.TestCase):
     def test_gain128_readback_is_verified_by_encoded_raw_value(self):
         client = XcpCalibrationClient(FakeXcp())
@@ -81,6 +90,14 @@ class CalibrationQuantizationTests(unittest.TestCase):
                 self.assertEqual((expected.raw_value, actual.raw_value), (expected_raw, expected_raw))
                 self.assertEqual(actual.physical_value, expected_raw / 1024)
                 self.assertTrue(verified)
+
+    def test_float32_readback_uses_encoded_bytes_not_python_float_equality(self):
+        expected, actual, verified = XcpCalibrationClient(FakeXcp()).write_and_verify(
+            float32_parameter(), 4.9, tolerance=0
+        )
+        self.assertEqual(expected.data, actual.data)
+        self.assertNotEqual(expected.raw_value, actual.raw_value)
+        self.assertTrue(verified)
 
 
 if __name__ == "__main__":

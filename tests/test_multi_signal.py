@@ -58,7 +58,7 @@ class MultiSignalTests(unittest.TestCase):
                 case = select_case(selection, 'MULTI_SIGNAL_FIXED')
                 self.assertEqual([(write.signal, write.value) for write in case.writes], writes)
                 self.assertEqual((case.fdti_ms, case.fhti_ms), limits)
-                self.assertEqual(case.offline_validation_status, 'A2L_VALIDATION_REQUIRED')
+                self.assertEqual(case.offline_validation_status, 'OFFLINE_VERIFIED')
         row_226 = select_case(1226, 'MULTI_SIGNAL_FIXED')
         self.assertNotIn('Mspd_test', [write.signal for write in row_226.writes])
 

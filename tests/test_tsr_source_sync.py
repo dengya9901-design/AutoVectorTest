@@ -44,7 +44,7 @@ class LatestTsrSourceSyncTests(unittest.TestCase):
             ('Motor_CurrentPhase_test', 241, 2),
         ])
         self.assertNotIn('Mspd_test', [write.signal for write in case.writes])
-        self.assertEqual(case.offline_validation_status, 'A2L_VALIDATION_REQUIRED')
+        self.assertEqual(case.offline_validation_status, 'OFFLINE_VERIFIED')
 
     def test_mcu_scope_and_row_98_definition_are_unchanged(self):
         cases = choices('MCU')

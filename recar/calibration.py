@@ -150,12 +150,10 @@ class XcpCalibrationClient:
     ) -> tuple[CalibrationValue, CalibrationValue, bool]:
         expected = self.write(parameter, physical_value)
         actual = self.read(parameter)
-        # The requested physical value can be quantized when it is encoded into
-        # an integer A2L object.  The ECU write is verified by the encoded raw
-        # representation, rather than by comparing an unquantized request with
-        # a decoded physical readback.  This is deterministic for all scalar
-        # parameter types and avoids arbitrary per-case tolerances.
-        ok = actual.raw_value == expected.raw_value
+        # Verify the exact A2L-encoded raw representation. Comparing bytes
+        # covers integer quantization and FLOAT32 IEEE-754 representation
+        # without an arbitrary physical-value tolerance.
+        ok = actual.data == expected.data
         return expected, actual, ok
 
 
