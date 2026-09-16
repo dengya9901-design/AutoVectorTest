@@ -14,7 +14,7 @@ class CatalogTests(unittest.TestCase):
     def test_family_counts_and_required_mapping(self):
         self.assertEqual(families(), ('MAGCHIP', 'MCU', 'MCU_OS', 'MULTI_SIGNAL_FIXED', 'PARAMETER_OFFSET', 'SENT', 'SPECIAL_SEQUENCE'))
         self.assertEqual({family: len(choices(family)) for family in families()},
-                         {'SENT': 16, 'MCU': 31, 'MCU_OS': 38, 'MAGCHIP': 10, 'MULTI_SIGNAL_FIXED': 44, 'SPECIAL_SEQUENCE': 1, 'PARAMETER_OFFSET': 15})
+                         {'SENT': 16, 'MCU': 62, 'MCU_OS': 38, 'MAGCHIP': 10, 'MULTI_SIGNAL_FIXED': 44, 'SPECIAL_SEQUENCE': 1, 'PARAMETER_OFFSET': 15})
         sent = select_case(1, 'SENT')
         mcu = select_case(37, 'MCU')
         os_case = select_case(99, 'MCU_OS')
