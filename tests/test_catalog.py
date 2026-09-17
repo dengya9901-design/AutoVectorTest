@@ -52,8 +52,8 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual((vbus.injection_signal, vbus.injection_value,
                           vbus.fdti_ms, vbus.fhti_ms),
                          ('Vbus_Fault_Test', 1, 1000, 1004))
-        self.assertEqual(checksum.offline_validation_status, 'A2L_VALIDATION_REQUIRED')
-        self.assertEqual(vbus.offline_validation_status, 'A2L_VALIDATION_REQUIRED')
+        self.assertEqual(checksum.offline_validation_status, 'OFFLINE_VERIFIED')
+        self.assertEqual(vbus.offline_validation_status, 'OFFLINE_VERIFIED')
         selected_rows = {case.excel_row for case in choices()}
         self.assertFalse(selected_rows & {194, 196, 198})
         self.assertFalse(selected_rows & set(range(200, 210)))

@@ -25,11 +25,11 @@
         "fdti_ms": "D195"
       },
       "implementation_status": "IMPLEMENTED",
-      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "offline_validation_status": "OFFLINE_VERIFIED",
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "A2L_SYMBOL_MISSING: CRC_Diag_Test is absent from the current XCP_SAM.a2l. XCP value restoration is not DTC clearing."
+      "notes": "A2L_READY: current XCP_SAM.a2l resolves CRC_Diag_Test as a writable UBYTE with identity conversion; verified read-only. XCP value restoration is not DTC clearing."
     },
     {
       "family": "SINGLE_SIGNAL",
@@ -50,11 +50,11 @@
         "fdti_ms": "D199"
       },
       "implementation_status": "IMPLEMENTED",
-      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "offline_validation_status": "OFFLINE_VERIFIED",
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "A2L_SYMBOL_MISSING: Vbus_Fault_Test is absent from the current XCP_SAM.a2l. XCP value restoration is not DTC clearing."
+      "notes": "A2L_READY: current XCP_SAM.a2l resolves Vbus_Fault_Test as a writable UBYTE with identity conversion; verified read-only. XCP value restoration is not DTC clearing."
     },
     {
       "family": "SENT",
@@ -4564,11 +4564,11 @@
         "enabled": "H137"
       },
       "implementation_status": "IMPLEMENTED",
-      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "offline_validation_status": "OFFLINE_VERIFIED",
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "A2L_CONVERSION_UNRESOLVED: current XCP_SAM.a2l resolves Power_Source5V_Test uniquely and writable but defines NO_COMPU_METHOD; engineering voltage conversion is required before physical writes.",
+      "notes": "A2L_READY: current XCP_SAM.a2l resolves Sensor_5V_Test and Power_Source5V_Test as writable scalar parameters; Power_Source5V_Test gain1024_4 factor 1/1024 verified read-only. HIGH variant; aggregate row hardware validation requires both variants.",
       "writes": [
         {
           "signal": "Sensor_5V_Test",
@@ -4611,11 +4611,11 @@
         "enabled": "H137"
       },
       "implementation_status": "IMPLEMENTED",
-      "offline_validation_status": "A2L_VALIDATION_REQUIRED",
+      "offline_validation_status": "OFFLINE_VERIFIED",
       "hardware_validation_status": "HARDWARE_VALIDATION_PENDING",
       "hardware_execution_status": "NOT_RUN",
       "recovery_validation_status": "HARDWARE_VALIDATION_REQUIRED",
-      "notes": "A2L_CONVERSION_UNRESOLVED: current XCP_SAM.a2l resolves Power_Source5V_Test uniquely and writable but defines NO_COMPU_METHOD; engineering voltage conversion is required before physical writes.",
+      "notes": "A2L_READY: current XCP_SAM.a2l resolves Sensor_5V_Test and Power_Source5V_Test as writable scalar parameters; Power_Source5V_Test gain1024_4 factor 1/1024 verified read-only. LOW variant; aggregate row hardware validation requires both variants.",
       "writes": [
         {
           "signal": "Sensor_5V_Test",

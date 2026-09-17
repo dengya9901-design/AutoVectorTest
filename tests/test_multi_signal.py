@@ -158,6 +158,6 @@ class MultiSignalTests(unittest.TestCase):
         self.assertEqual([(write.signal, write.value) for write in select_case(2003, 'PARAMETER_OFFSET').writes],
                          [('Temp_Test', 1), ('Temp_Inject_Test', 126)])
         self.assertEqual({case.excel_row for case in cases if case.offline_validation_status == 'OFFLINE_VERIFIED'},
-                         {3, 4, 5, 211, 212, 213, 214, 218, 219, 220, 221})
+                         {3, 4, 5, 137, 211, 212, 213, 214, 218, 219, 220, 221})
         self.assertTrue(all(case.offline_validation_status == 'A2L_VALIDATION_REQUIRED'
-                            for case in cases if case.excel_row not in {3, 4, 5, 211, 212, 213, 214, 218, 219, 220, 221}))
+                            for case in cases if case.excel_row not in {3, 4, 5, 137, 211, 212, 213, 214, 218, 219, 220, 221}))
