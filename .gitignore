@@ -7,3 +7,6 @@ deliverables/
 .codex_tmp/
 .env
 .env.*
+
+# Test case files are retained locally and excluded from the public repository.
+/tests/

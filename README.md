@@ -1,11 +1,11 @@
-# recarTest
+# AutoVectorTest
 For Recar_CAAS project.
 
 ## Get the project and inspect cases offline
 
 ```powershell
-git clone https://github.com/dengya9901-design/recarTest.git
-cd recarTest
+git clone https://github.com/dengya9901-design/AutoVectorTest.git
+cd AutoVectorTest
 python -B -m recar.run --list
 python -B -m recar.run --list --family SENT
 python -B -m recar.run --family SENT --case 1 --dry-run
@@ -18,12 +18,14 @@ they are metadata previews, not hardware PASS evidence.
 
 ## Hardware environment and evidence
 
-This repository contains the Recar catalog, common runners, reports, tests,
+This public repository contains the Recar catalog, common runners, report generators,
 and development handoff documents. The complete local hardware environment
 is not bundled: `recar.parameter` and `recar.a2l_resolver`, the validated
 Python/XCP environment, Vector drivers, CANoe configuration/DBC, active A2L,
 and ECU software must be supplied separately by the project owner.
-The full test suite also requires those Python dependencies. Hardware paths
+Test case files under `tests/` are kept locally and are not distributed in
+the current public source tree. The local full test suite also requires
+those Python dependencies. Hardware paths
 currently refer to the validated Windows setup under `C:\recar`.
 
 Catalog enablement and historical handoff metadata alone do not authorize
