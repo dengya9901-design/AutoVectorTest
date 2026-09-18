@@ -1,4 +1,42 @@
 # recarTest
+For Recar_CAAS project.
+
+## Get the project and inspect cases offline
+
+```powershell
+git clone https://github.com/dengya9901-design/recarTest.git
+cd recarTest
+python -B -m recar.run --list
+python -B -m recar.run --list --family SENT
+python -B -m recar.run --family SENT --case 1 --dry-run
+```
+
+Run these commands from the repository root with Python 3.10 or later.
+The listing and catalog dry-run commands use the Python standard library
+and do not connect to the ECU. Dry-run reports are created in `reports/dry_run`;
+they are metadata previews, not hardware PASS evidence.
+
+## Hardware environment and evidence
+
+This repository contains the Recar catalog, common runners, reports, tests,
+and development handoff documents. The complete local hardware environment
+is not bundled: `recar.parameter` and `recar.a2l_resolver`, the validated
+Python/XCP environment, Vector drivers, CANoe configuration/DBC, active A2L,
+and ECU software must be supplied separately by the project owner.
+The full test suite also requires those Python dependencies. Hardware paths
+currently refer to the validated Windows setup under `C:\recar`.
+
+Catalog enablement and historical handoff metadata alone do not authorize
+hardware execution. Check the latest engineering exclusions and campaign
+status before selecting a hardware case. The current master status, raw
+hardware evidence, and PASS delivery ZIP are maintained separately from this
+source repository; request the current delivery package from the owner.
+
+Functional acceptance requires A/B/C events, A→B <= catalog FDTI, and
+A→C <= catalog FHTI. B→C, Warning Lamp, Ibus, and EcuStatus are supporting
+functional evidence; ECU state still participates in safety baseline checks.
+
+## Existing SENT batch interface
 
 The formal SENT batch is catalog driven and contains exactly Excel Rows 7–15
 and 22–28 (`FAULT_INJECT.Sent_Fault_Test = 1..16`) in selector order.
